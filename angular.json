@@ -28,9 +28,22 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/css/vendors/fontawesome.css",
+              "src/assets/css/vendors/animate.css",
+              "src/assets/css/vendors/themify-icons.css",
+              "src/assets/css/vendors/bootstrap.css",
+              "src/assets/css/vendors/jsgrid.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+              "src/assets/css/admin.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/icons/feather-icon/feather.min.js",
+              "src/assets/js/icons/feather-icon/feather-icon.js"
+            ]
           },
           "configurations": {
             "production": {

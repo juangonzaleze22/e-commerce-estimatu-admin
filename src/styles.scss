@@ -1,1 +1,37 @@
+@import "~ngx-red-zoom/styles/base.scss";
+@import "~ngx-red-zoom/styles/mixins/style-magnifier.scss";
+
 /* You can add global styles to this file, and also import other style files */
+
+
+
+.bs-datepicker {
+    .bs-datepicker-container {
+        padding: 0;
+        .bs-datepicker-head {
+            height: 38px;
+            padding: 4px;
+            background-color: var(--theme-deafult);
+        }
+        td.week span{
+            color: var(--theme-deafult) !important;
+        }
+        span.selected {
+            background-color: var(--theme-deafult) !important;
+        }
+    }
+}
+.bs-datepicker-body table td.is-highlighted:not(.disabled):not(.selected) span{
+
+}
+.bs-datepicker-body table td:hover span { 
+    background-color: #9e9e9e78 !important;
+}
+.bs-datepicker-body table td span.is-highlighted:not(.disabled):not(.selected){
+    background-color: var(--theme-deafult);
+}
+.bs-datepicker-body table td:not(.disabled):not(.week) span:not(.disabled):not(.is-other-month){
+}
+
+.bs-datepicker-body table td span.is-other-month, .bs-datepicker-body table td.is-other-month span{
+}
