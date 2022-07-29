@@ -107,9 +107,9 @@ export class LoginComponent implements OnInit {
         password: this.myFormRegister.value.password,
         rol: 'admin',
       }
+      console.log("response", this.loading)
 
       this.global.postService("auth/register", data).subscribe(response => {
-        console.log(response)
         this.loading = false;
         if (response["status"] == "EmailExist") {
 
