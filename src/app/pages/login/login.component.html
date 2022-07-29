@@ -57,7 +57,7 @@
                                         <div class="form-group password">
                                             <input [type]="showPassword? 'password' : 'text'" class="form-control"
                                                 placeholder="Password" formControlName="password">
-                                            <button class="button-show btn" (click)="showPassword = !showPassword">
+                                            <button type="button" class="button-show btn" (click)="showPassword = !showPassword">
                                                 <i *ngIf="showPassword" class='bx bx-show'></i>
                                                 <i *ngIf="!showPassword" class='bx bx-low-vision'></i>
                                             </button>
@@ -129,7 +129,7 @@
                                         <div class="form-group password">
                                             <input formControlName="password" [type]="showRegisterPassword ? 'password' : 'text'" class="form-control"
                                                 placeholder="Password">
-                                                <button class="button-show btn" (click)="showRegisterPassword = !showRegisterPassword">
+                                                <button type="button" class="button-show btn" (click)="showRegisterPassword = !showRegisterPassword">
                                                     <i *ngIf="showRegisterPassword" class='bx bx-show'></i>
                                                     <i *ngIf="!showRegisterPassword" class='bx bx-low-vision'></i>
                                                 </button>
@@ -147,7 +147,7 @@
                                         <div class="form-group password">
                                             <input formControlName="confirm_password" [type]="showConfirmRegisterPassword ? 'password' : 'text'"
                                                 class="form-control" placeholder="Confirm Password">
-                                                <button class="button-show btn" (click)="showConfirmRegisterPassword = !showConfirmRegisterPassword">
+                                                <button type="button" class="button-show btn" (click)="showConfirmRegisterPassword = !showConfirmRegisterPassword">
                                                     <i *ngIf="showConfirmRegisterPassword" class='bx bx-show'></i>
                                                     <i *ngIf="!showConfirmRegisterPassword" class='bx bx-low-vision'></i>
                                                 </button>
