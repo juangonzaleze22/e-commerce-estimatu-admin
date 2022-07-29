@@ -1,0 +1,201 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="page-header-left">
+                    <h3>Transactions
+                        <small>Multikart Admin panel</small>
+                    </h3>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <ol class="breadcrumb pull-right">
+                    <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">Sales</li>
+                    <li class="breadcrumb-item active">Transactions</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Transaction Details</h5>
+                </div>
+                <div class="card-body">
+                    <div id="batchDelete" class="transactions jsgrid" style="position: relative; height: auto; width: 100%;">
+                        <div class="jsgrid-grid-header">
+                           <table class="jsgrid-table">
+                              <tbody>
+                                 <tr class="jsgrid-header-row">
+                                    <th class="jsgrid-header-cell" style="width: 50px;">Order Id</th>
+                                    <th class="jsgrid-header-cell jsgrid-align-right" style="width: 100px;">Transaction Id</th>
+                                    <th class="jsgrid-header-cell" style="width: 100px;">Date</th>
+                                    <th class="jsgrid-header-cell" style="width: 50px;">Payment Method</th>
+                                    <th class="jsgrid-header-cell" style="width: 100px;">Delivery Status</th>
+                                    <th class="jsgrid-header-cell" style="width: 100px;">Amount</th>
+                                 </tr>
+                                 <tr class="jsgrid-filter-row" style="display: none;">
+                                    <td class="jsgrid-cell" style="width: 50px;"><input type="text"></td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;"><input type="number"></td>
+                                    <td class="jsgrid-cell" style="width: 100px;"><input type="text"></td>
+                                    <td class="jsgrid-cell" style="width: 50px;"><input type="text"></td>
+                                    <td class="jsgrid-cell" style="width: 100px;"><input type="text"></td>
+                                    <td class="jsgrid-cell" style="width: 100px;"><input type="text"></td>
+                                 </tr>
+                                 <tr class="jsgrid-insert-row" style="display: none;">
+                                    <td class="jsgrid-cell" style="width: 50px;"><input type="text"></td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;"><input type="number"></td>
+                                    <td class="jsgrid-cell" style="width: 100px;"><input type="text"></td>
+                                    <td class="jsgrid-cell" style="width: 50px;"><input type="text"></td>
+                                    <td class="jsgrid-cell" style="width: 100px;"><input type="text"></td>
+                                    <td class="jsgrid-cell" style="width: 100px;"><input type="text"></td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <div class="jsgrid-grid-body">
+                           <table class="jsgrid-table">
+                              <tbody>
+                                 <tr class="jsgrid-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">142</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#212145214510</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Sep 2,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Paypal</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Pending </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$175/-</td>
+                                 </tr>
+                                 <tr class="jsgrid-alt-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">217</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#784561421721</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Dec 10,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Stripe</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Process </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$845/-</td>
+                                 </tr>
+                                 <tr class="jsgrid-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">546</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#476547821142</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Feb 15,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Stripe</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Delivered </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$314/-</td>
+                                 </tr>
+                                 <tr class="jsgrid-alt-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">671</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#745384127541</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Mar 27,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Paypal</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Pending </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$217/-</td>
+                                 </tr>
+                                 <tr class="jsgrid-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">565</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#96725125102</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Sep 1,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Stripe</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Process </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$542/-</td>
+                                 </tr>
+                                 <tr class="jsgrid-alt-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">754</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#547121023651</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">May 18,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Paypal</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Pending </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$2141/-</td>
+                                 </tr>
+                                 <tr class="jsgrid-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">164</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#876412242215</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Jan 14,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Stripe</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Delivered</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$4872/-</td>
+                                 </tr>
+                                 <tr class="jsgrid-alt-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">841</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#31534221621</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Apr 22,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Paypal</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Process </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$7841/-</td>
+                                 </tr>
+                                 <tr class="jsgrid-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">354</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#78412457421</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Mar 26,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Paypal</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Pending </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$2784/-</td>
+                                 </tr>
+                                 <tr class="jsgrid-alt-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">784</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#241524757448</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Feb 29,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Stripe</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Delivered </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$461/-</td>
+                                 </tr>
+                                 <tr class="jsgrid-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">142</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#212145214510</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Sep 2,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Paypal</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Pending </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$175/-</td>
+                                 </tr>
+                                 <tr class="jsgrid-alt-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">217</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#784561421721</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Dec 10,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Stripe</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Process </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$845/-</td>
+                                 </tr>
+                                 <tr class="jsgrid-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">546</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#476547821142</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Feb 15,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Stripe</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Delivered </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$314/-</td>
+                                 </tr>
+                                 <tr class="jsgrid-alt-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">671</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#745384127541</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Mar 27,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Paypal</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Pending </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$217/-</td>
+                                 </tr>
+                                 <tr class="jsgrid-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">565</td>
+                                    <td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#96725125102</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Sep 1,19</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">Stripe</td>
+                                    <td class="jsgrid-cell" style="width: 100px;">Process </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">$542/-</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <div class="jsgrid-pager-container" style="display: none;">
+                           <div class="jsgrid-pager">Pages: <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">First</a></span> <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">Prev</a></span> <span class="jsgrid-pager-page jsgrid-pager-current-page">1</span> <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">Next</a></span> <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">Last</a></span> &nbsp;&nbsp; 1 of 1 </div>
+                        </div>
+                        <div class="jsgrid-load-shader" style="display: none; position: absolute; inset: 0px; z-index: 1000;"></div>
+                        <div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...</div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

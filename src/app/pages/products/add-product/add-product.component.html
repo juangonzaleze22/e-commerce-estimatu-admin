@@ -1,0 +1,635 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="page-header-left">
+                    <h3>Add Products
+                        <small>Multikart Admin panel</small>
+                    </h3>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <ol class="breadcrumb pull-right">
+                    <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">Digital</li>
+                    <li class="breadcrumb-item active">Add Product</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+<!-- Container-fluid starts-->
+
+
+<!-- section start -->
+
+<form [formGroup]="myFormProducts" (ngSubmit)="onSubmitLogin()" autocomplete="off">
+    <section class="card">
+        <div class="collection-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 product-right">
+                        <div class="box-image">
+                            <img [src]="valuesImageProducts.length < 1 ? '../assets/images/pro3/1.jpg' : (valuesImageProducts[0].base64 || global.urlImage + valuesImageProducts[0])"
+                                class="img-fluid aspect-radio-cover" [alt]="">
+                            <div class="box-input-file buttonAddProduct" *ngIf="valuesImageProducts.length != 6">
+                                <input accept="image/gif, image/jpeg, image/png" alife-file-to-base64
+                                    (onFileChanged)="changeImage($event)" type="file" class="upload">
+                                <i class="fa fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="row m-0">
+                            <div class="col-12 p-0">
+                                <owl-carousel-o [options]="customOptions" items="4">
+                                    <ng-template carouselSlide *ngFor="let item of valuesImageProducts; index as i">
+                                        <div class="cardBox">
+                                            <img [src]="item.base64 || global.urlImage + item" alt=""
+                                                class="img-fluid aspect-radio-cover cardBox__img">
+                                            <button class="btn cardBox__btn" type="button" (click)="removeImage(i)">
+                                                <i class='bx bx-x'></i>
+                                            </button>
+                                        </div>
+                                    </ng-template>
+                                </owl-carousel-o>
+                            </div>
+                        </div>
+                        <div class="border-product">
+                            <div class="digital-add needs-validation">
+                                <div class="form-group">
+                                    <label for="validationCustomtitle" class="col-form-label pt-0"><span>*</span>
+                                        SKU</label>
+                                    <input class="form-control" id="validationCustomtitle" type="text"
+                                        formControlName="sku">
+                                    <div class="msg-alert text-red pl-0"
+                                        *ngIf="myFormProducts.get('sku').invalid && (myFormProducts.get('sku').dirty || myFormProducts.get('sku').touched)">
+                                        <div class="" *ngIf="myFormProducts.controls.sku.errors.required">
+                                            Sku is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label"><span>*</span> Categories</label>
+                                    <ng-select formControlName="categoria"
+                                        (ngModelChange)="addCategory($event, modalAddCategory)">
+                                        <ng-option value="new-category">
+                                            <div class="btn-select-blue">
+                                                <i class="bx bx-plus"></i> Add Category
+                                            </div>
+                                        </ng-option>
+                                        <ng-option *ngFor="let category of categories" [value]="category._id">
+                                            {{category.categoria}}</ng-option>
+                                    </ng-select>
+                                    <div class="msg-alert text-red pl-0"
+                                        *ngIf="myFormProducts.get('categoria').invalid && (myFormProducts.get('categoria').dirty || myFormProducts.get('categoria').touched)">
+                                        <div class="" *ngIf="myFormProducts.controls.categoria.errors.required">
+                                            Category is required
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-form-label">Subcategory</label>
+                                    <ng-select formControlName="subcategoria"
+                                        (ngModelChange)="SubCategory($event, modalAddSubcategory)">
+                                        <ng-option value="new-subcategory">
+                                            <div class="btn-select-blue">
+                                                <i class="bx bx-plus"></i> Add Subcategory
+                                            </div>
+                                        </ng-option>
+                                        <ng-option *ngFor="let sub of subcategories" [value]="sub._id">
+                                            {{sub.subCategoria}}</ng-option>
+                                    </ng-select>
+                                </div>
+
+                                <!-- <div class="form-group">
+                                    <label for="validationCustom02" class="col-form-label"><span>*</span> Product
+                                        Price</label>
+                                    <input class="form-control" id="validationCustom02" type="text" formControlName="precio"
+                                        mask="separator.2" thousandSeparator="," suffix="$">
+                                    <div class="msg-alert text-red pl-0"
+                                        *ngIf="myFormProducts.get('precio').invalid && (myFormProducts.get('precio').dirty || myFormProducts.get('precio').touched)">
+                                        <div class="" *ngIf="myFormProducts.controls.precio.errors.required">
+                                            Price is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="discount01" class="col-form-label">Discount</label>
+                                    <div class="input-group">
+                                        <input class="form-control" id="discount01" type="number"
+                                            formControlName="descuento">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div> -->
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-6 rtl-text">
+                        <div class="row">
+                            <div class="col">
+                                <div class="product-right">
+                                    <!-- <div class="product-count">
+                                    <ul>
+                                        <li>
+                                            <img src="../assets/images/fire.gif" class="img-fluid" alt="image">
+                                            <span class="p-counter">37</span>
+                                            <span class="lang">orders in last 24 hours</span>
+                                        </li>
+                                        <li>
+                                            <img src="../assets/images/person.gif" class="img-fluid user_img"
+                                                alt="image">
+                                            <span class="p-counter">44</span>
+                                            <span class="lang">active view this</span>
+                                        </li>
+                                    </ul>
+                                </div> -->
+                                    <div class="sectionEdit">
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" formControlName="titulo"
+                                                placeholder="Title">
+                                            <div class="msg-alert text-red pl-0"
+                                                *ngIf="myFormProducts.get('titulo').invalid && (myFormProducts.get('titulo').dirty || myFormProducts.get('titulo').touched)">
+                                                <div class="" *ngIf="myFormProducts.controls.titulo.errors.required">
+                                                    Title is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rating-section">
+                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                class="fa fa-star"></i>
+                                        </div>
+                                        <h6>120 ratings</h6>
+                                    </div>
+                                    <!-- <div class="label-section">
+                                    <span class="badge badge-grey-color">#1 Best seller</span>
+                                    <span class="label-text">in fashion</span>
+                                </div> -->
+
+                                    <h3 class="price-detail"
+                                        *ngIf="!calcDiscount(selectedPrice?.price, selectedPrice?.discount)">
+                                        {{selectedPrice?.price | currency: 'USD'}}
+                                    </h3>
+
+                                    <h3 class="price-detail"
+                                        *ngIf="calcDiscount(selectedPrice?.price, selectedPrice?.discount)">
+                                        {{calcDiscount(selectedPrice?.price, selectedPrice?.discount) | currency}}
+                                        <del class="ms-2">{{selectedPrice?.price | currency: 'USD'}}</del>
+                                        <span>{{selectedPrice?.discount}}% </span>
+
+                                        <!-- {{product?.precioDescuento |currency}}
+                                        <del class="ms-2"> {{product?.precio | currency}}</del>
+                                        <span>{{product?.descuento}}% </span> -->
+                                    </h3>
+                                    <!-- <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <input class="form-control" id="validationCustom02" type="text"
+                                                formControlName="precio" mask="separator.2" thousandSeparator=","
+                                                suffix="$" placeholder="Price">
+                                            <div class="msg-alert text-red pl-0"
+                                                *ngIf="myFormProducts.get('precio').invalid && (myFormProducts.get('precio').dirty || myFormProducts.get('precio').touched)">
+                                                <div class="" *ngIf="myFormProducts.controls.precio.errors.required">
+                                                    Price is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="input-group">
+                                                <input class="form-control" id="discount01" type="number"
+                                                    formControlName="descuento" placeholder="Discount">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    <!-- <ul class="color-variant">
+                                    <li class="bg-light0 active"></li>
+                                    <li class="bg-light1"></li>
+                                    <li class="bg-light2"></li>
+                                </ul> -->
+
+
+                                    <div id="selectSize" class="addeffect-section product-description border-product">
+                                        <h6 class="product-title size-text">size <small class="ms-2 descriptionText">
+                                                enter sizes in inches</small></h6>
+                                        <div class="size-box" *ngIf="valuesSize.length > 0">
+                                            <ul class="radio-section-block">
+                                                <li *ngFor="let size of valuesSize; let indexValueSize = index"
+                                                    [@inOutAnimation]>
+                                                    <label class="d-flex" [for]="size.id"
+                                                        (click)="onSelectedPrice(size)"
+                                                        [ngClass]="{'active': size.id == selectedPrice.id}">
+                                                        <div>
+                                                            {{size.size}} - ({{size.price | currency}}) <span
+                                                                *ngIf="size.discount != null">-
+                                                                ({{size.discount}}%)</span>
+                                                        </div>
+                                                        <button class="btn btn-delete-top-right"
+                                                            (click)="removeValues('sizes', indexValueSize)"
+                                                            type="button">
+                                                            <i class='bx bx-x'></i>
+                                                        </button>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- <ng-select (change)="onSelectedPrice($event)" formControlName="size">
+                                            <ng-option *ngFor="let size of valuesSize" [value]="size">
+                                                {{size.size}} - ({{size.price | currency}})<span *ngIf="size.discount != ''">- ({{size.discount}}%)</span>
+                                            </ng-option>
+                                        </ng-select> -->
+
+                                        
+                                        <form [formGroup]="formSize" (ngSubmit)="onSubmitList('sizes')"
+                                            autocomplete="off">
+
+                                            <div class="my-4">
+                                                <div class="digital-add needs-validation size">
+                                                    <!-- <button class="btn btnAdd" (click)="onAddSize()" type="button"
+                                                        [disabled]="sizeControls.length > 3">
+                                                        <i class="bx bx-plus"></i>
+                                                    </button> -->
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control"
+                                                                formControlName="size" placeholder="Size">
+                                                            <div class="msg-alert text-red pl-0"
+                                                                *ngIf="formSize.get('size').invalid && (formSize.get('size').dirty || formSize.get('size').touched)">
+                                                                <div class=""
+                                                                    *ngIf="formSize.controls.size.errors.required">
+                                                                    Size is required
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group flex-direction-column">
+                                                            <input type="text" class="form-control"
+                                                                formControlName="price" placeholder="Price"
+                                                                mask="separator.2" thousandSeparator="," suffix="$">
+                                                            <div class="msg-alert text-red pl-0"
+                                                                *ngIf="formSize.get('price').invalid && (formSize.get('price').dirty || formSize.get('price').touched)">
+                                                                <div class=""
+                                                                    *ngIf="formSize.controls.price.errors.required">
+                                                                    Price is required
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group flex-direction-column">
+                                                            <input type="text" class="form-control"
+                                                                formControlName="discount" placeholder="Discount (%)"
+                                                                min="0" max="100" mask="separator.2"
+                                                                thousandSeparator="," suffix="%">
+                                                        </div>
+                                                        <!-- <button class="btn btn-delete-top-right" type="button"
+                                                            (click)="removeValues('input', i)">
+                                                            <i class='bx bx-x'></i>
+                                                        </button> -->
+                                                    <!-- <div class="form-group"
+                                                        *ngFor="let item of sizeControls; let i = index"
+                                                        [ngClass]="{'lastGroup': i == sizeControls.length - 1}"
+                                                        [@inOutAnimation]>
+                                                        <div>
+                                                            <input class="form-control" id="siceReference01" type="number"
+                                                                min="0" [formControlName]="i">
+                                                                 <small *ngIf="i == 0">Height</small>
+                                                                 <small *ngIf="i == 1">Width</small>
+                                                                 <small *ngIf="i == 2">Lenght</small>
+                                                                 <small *ngIf="i == 3">example</small>
+                                                        </div>
+                                                    
+
+                                                        <i class='bx bx-x space-x'></i>
+                                                        <button class="btn btn-delete-top-right" type="button"
+                                                            (click)="removeValues('input', i)">
+                                                            <i class='bx bx-x'></i>
+                                                        </button>
+                                                    </div> -->
+                                                    <div class="d-flex justify-content-end ms-auto">
+                                                        <!-- <button type="button" class="btn btn-primary px-3"
+                                                            (click)="onAddSize()">
+                                                            Add price 
+                                                        </button> -->
+                                                       
+                                                        <button type="button" class="btn btn-primary px-3"
+                                                            (click)="onSubmitList('sizes')"
+                                                            [disabled]="formSize.invalid" type="submit">
+                                                            ADD
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!-- <h6 class="error-message">please select size</h6> -->
+                                        <!--  <div class="size-box">
+                                        <ul>
+                                            <li><a href="javascript:void(0)">s</a></li>
+                                            <li><a href="javascript:void(0)">m</a></li>
+                                            <li><a href="javascript:void(0)">l</a></li>
+                                            <li><a href="javascript:void(0)">xl</a></li>
+                                        </ul>
+                                    </div> -->
+                                        <!-- <h6 class="product-title">quantity</h6> -->
+                                        <!-- <div class="qty-box">
+                                        <div class="input-group"><span class="input-group-prepend"><button type="button"
+                                                    class="btn quantity-left-minus" data-type="minus" data-field=""><i
+                                                        class="ti-angle-left"></i></button> </span>
+                                            <input type="text" name="quantity" class="form-control input-number"
+                                                value="1">
+                                            <span class="input-group-prepend"><button type="button"
+                                                    class="btn quantity-right-plus" data-type="plus" data-field=""><i
+                                                        class="ti-angle-right"></i></button></span>
+                                        </div>
+                                    </div> -->
+                                        <div class="form-group mt-4 mb-2 d-flex justify-content-between">
+                                            <div>
+                                                <h5 class="free-shopping">
+                                                    <img src="assets/images/icon/free-shopping.png" alt=""
+                                                        class="img-fluid mr-3">
+                                                    Free shipping
+                                                </h5>
+                                                <div class="form-group mt-3" *ngIf="myFormProducts.value.envio == 'true'">
+                                                    <textarea type="text" class="form-control" formControlName="textEnvio"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                class="m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated mt-2">
+                                                <label class="d-block mb-0 me-4" for="shipping">
+                                                    <input class="radio_animated" name="envio" id="shipping"
+                                                        type="radio" formControlName="envio" value="true" >
+                                                    Yes
+                                                </label>
+                                                <label class="d-block mb-0" for="shipping1">
+                                                    <input class="radio_animated" id="shipping1" type="radio"
+                                                        formControlName="envio" name="envio" value="false">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- <ul>
+                                        <li>
+                                            <img src="../assets/images/icon/truck.png" class="img-fluid me-2" alt="image">
+                                            <span class="lang">Free shipping for orders above $500 USD</span>
+                                        </li>
+                                    </ul> -->
+                                    </div>
+                                    <!-- <div class="product-buttons"><a href="javascript:void(0)" id="cartEffect"
+                                        class="btn btn-solid hover-solid btn-animation"><i
+                                            class="fa fa-shopping-cart me-1" aria-hidden="true"></i> add to cart</a>
+                                    <a href="#" class="btn btn-solid"><i class="fa fa-bookmark fz-16 me-2"
+                                            aria-hidden="true"></i>wishlist</a>
+                                </div> -->
+
+                                    <!-- <div class="border-product">
+                                    <h6 class="product-title">shipping info</h6>
+                                    <ul class="shipping-info">
+                                        <li>100% Original Products</li>
+                                        <li>Free Delivery on order above Rs. 799</li>
+                                        <li>Pay on delivery is available</li>
+                                        <li>Easy 30 days returns and exchanges</li>
+                                    </ul>
+                                </div> -->
+                                    <div class="border-product">
+                                        <h6 class="product-title size-text"> share it<span class="pull-right">
+                                                <a href="" (click)="openModal(template, $event)">Add social</a>
+                                            </span>
+                                        </h6>
+                                        <div class="row">
+                                            <div class="product-icon col-4">
+                                                <ul class="product-social">
+                                                    <li *ngIf="valuesSocial?.facebook">
+                                                        <a [href]="valuesSocial?.facebook" target="_blank"><i
+                                                                class="fa fa-facebook"></i></a>
+                                                    </li>
+                                                    <li *ngIf="valuesSocial?.google">
+                                                        <a [href]="valuesSocial?.google" target="_blank"><i
+                                                                class="fa fa-google-plus"></i></a>
+                                                    </li>
+                                                    <li *ngIf="valuesSocial?.twitter">
+                                                        <a [href]="valuesSocial?.twitter" target="_blank"><i
+                                                                class="fa fa-twitter"></i></a>
+                                                    </li>
+                                                    <li *ngIf="valuesSocial?.instagram">
+                                                        <a [href]="valuesSocial?.instagram" target="_blank"><i
+                                                                class="fa fa-instagram"></i></a>
+                                                    </li>
+                                                    <!-- <li *ngIf="valuesSocial?.facebook">
+                                                        <a [href]="valuesSocial?.facebook" target="_blank"><i class="fa fa-rss"></i></a>
+                                                    </li> -->
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="border-product">
+                                        <h6 class="product-title">product details</h6>
+                                        <textarea class="form-control" id="editor1" name="editor1" cols="10" rows="4"
+                                            formControlName="descripcion"></textarea>
+                                        <div class="single-product-tables">
+                                            <ul class="list-specifications add-products" *ngIf="valuesMeta.length > 0">
+                                                <li *ngFor="let item of valuesMeta; index as i" [@inOutAnimation]>
+                                                    <span>{{item.title}}</span>
+                                                    <span>{{item.description}}</span>
+                                                    <button class="btn btn-delete-top-right"
+                                                        (click)="removeValues('metas', i)">
+                                                        <i class='bx bx-x'></i>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <form [formGroup]="formMeta" (ngSubmit)="onSubmitList('metas')"
+                                            autocomplete="off">
+                                            <div class="digital-add needs-validation row">
+                                                <div class="col-5">
+                                                    <input class="form-control" id="validationCustom05" type="text"
+                                                        formControlName="title" placeholder="Title">
+                                                </div>
+                                                <div class="col-5">
+                                                    <input class="form-control" id="validationCustom06" type="text"
+                                                        formControlName="description" placeholder="Description">
+                                                </div>
+                                                <div class="col-2">
+                                                    <button type="button" class="btn btn-primary px-3"
+                                                        (click)="onSubmitList('metas')" [disabled]="formMeta.invalid">
+                                                        <i class='bx bx-check'></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span>*</span> Status</label>
+                                        <div class="m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                            <label class="d-block" for="edo-ani">
+                                                <input class="radio_animated" id="edo-ani" type="radio"
+                                                    formControlName="status" name="status" value="active">
+                                                Enable
+                                            </label>
+                                            <label class="d-block ms-4" for="edo-ani1">
+                                                <input class="radio_animated" id="edo-ani1" type="radio"
+                                                    formControlName="status" name="status" value="disabled">
+                                                Disable
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- product-tab starts -->
+    <section class="tab-product card py-4 px-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                        <li class="nav-item">
+                            <a (click)="tabPanel = 1" class="nav-link" [ngClass]="{'active': tabPanel == 1}"><i
+                                    class="icofont icofont-ui-home"></i>Details</a>
+                            <div class="material-border"></div>
+                        </li>
+                        <li class="nav-item">
+                            <a (click)="tabPanel = 2" class="nav-link" [ngClass]="{'active': tabPanel == 2}"><i
+                                    class="icofont icofont-contacts"></i>Video</a>
+                            <div class="material-border"></div>
+                        </li>
+                    </ul>
+                    <div class="tab-content nav-material" id="top-tabContent">
+                        <div [ngClass]="{'show active ': tabPanel == 1}" class="tab-pane fade">
+                            <div class="product-tab-discription">
+                                <!-- {{product?.resumen}} -->
+                                <div class="form-group">
+                                    <!-- <label class="col-form-label">Resumen</label> -->
+                                    <textarea class="form-control" rows="5" cols="12"
+                                        formControlName="resumen"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div [ngClass]="{'show active ': tabPanel == 2}" class="tab-pane fade">
+                            <div class="">
+                                <!-- <video width="320" height="240" controls *ngIf="product?.video">
+                                <source [src]="global.urlImage + product?.video" type="video/mp4">
+                                <source [src]="global.urlImage + product?.video" type="video/ogg">
+                            </video>
+                            <iframe *ngIf="product?.urlVideo" width="560" height="315" controls
+                                [src]="product?.urlVideo | safeUrl" allow="encrypted-media" allowfullscreen></iframe> -->
+                                <!-- <div class="tab2-card mt-4">
+                                    <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link" [ngClass]="{'active': tabPanel == 0}"
+                                                (click)="changePanel(0)">
+                                                <i class='bx bx-video me-2'></i>
+                                                Video
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" [ngClass]="{'active': tabPanel == 1}"
+                                                (click)="changePanel(1)">
+                                                <i class='bx bx-link me-2'></i>
+                                                Link
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div> -->
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="col-form-label pt-0"> Product Upload</label>
+                                        <ngx-dropzone (change)="onSelect($event)" accept="video/mp4,video/mp3">
+                                            <ngx-dropzone-label>Drop it</ngx-dropzone-label>
+                                            <ngx-dropzone-preview *ngFor="let f of files" [multiple]='false'
+                                                [removable]="true" (removed)="onRemove(f)">
+                                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                            </ngx-dropzone-preview>
+                                        </ngx-dropzone>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="urlVideo" class="col-form-label pt-0">Link to video</label>
+                                        <input id="urlVideo" class="form-control" type="text" formControlName="urlVideo"
+                                            placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 ">
+            <div class="card">
+                <div class="card-body d-flex justify-content-center">
+                    <button class="btn btn-primary d-flex align-items-center" [disabled]="myFormProducts.invalid || loading" type="submit">
+                        <app-btn-spiner *ngIf="loading"></app-btn-spiner>
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- product-tab ends -->
+</form>
+
+<ng-template #modalAddCategory>
+    <app-add-category data="category"></app-add-category>
+</ng-template>
+<ng-template #modalAddSubcategory>
+    <app-add-category data="subcategory"></app-add-category>
+</ng-template>
+
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left text-center">Add social</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="formSocial" (ngSubmit)="onSubmitSocial('social')" autocomplete="off">
+        <div class="modal-body">
+            <div class="form-social">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-facebook"></i></span>
+                    </div>
+                    <input type="text" formControlName="facebook" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-google-plus"></i></span>
+                    </div>
+                    <input type="text" formControlName="google" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-twitter"></i></span>
+                    </div>
+                    <input type="text" formControlName="twitter" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-instagram"></i></span>
+                    </div>
+                    <input type="text" formControlName="instagram" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="submit">Save</button>
+            <button class="btn" type="button" (click)="modalRef.hide()">Close</button>
+        </div>
+    </form>
+</ng-template>

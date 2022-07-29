@@ -1,0 +1,5 @@
+<ng-select (change)="selectCountry($event)" [(ngModel)]="selectedCountry">
+    <ng-option *ngFor="let country of coutries"
+        [value]="country.isoCode">
+        {{country.name}}</ng-option>
+</ng-select>

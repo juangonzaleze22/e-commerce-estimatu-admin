@@ -1,0 +1,51 @@
+<!-- <div class="sectionPagination">
+    <h5 class="text">
+        {{app.lang("Mostrando")}} {{pagination.modelInicioLista}} {{app.lang("A")}} {{pagination.modelFinLista}} {{app.lang("De")}} {{pagination.modelTotalRegistros}} {{app.lang("Entradas")}}
+    </h5>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" *ngIf="pagination.modelCurretPage > 1">
+                <a class="page-link" aria-label="Previous" (click)="paginationChange(0)">
+                    <span>Previus</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link active">{{pagination.modelCurretPage}}</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link">...</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link">{{pagination.modelTotalPage}}</a>
+            </li>
+            <li class="page-item" *ngIf="pagination.modelCurretPage < pagination.modelTotalPage">
+                <a class="page-link" aria-label="Next" (click)="paginationChange(1)">
+                    <span>Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div> -->
+
+<div class="jsgrid-pager-container mb-5" style="display: block;">
+    <div  class="jsgrid-pager">Pages: 
+        <span class="jsgrid-pager-nav-button">
+            <a (click)="paginationChange(2)">First</a>
+        </span> 
+        <span class="jsgrid-pager-nav-button" *ngIf="pagination.modelCurretPage > 1">
+            <a  (click)="paginationChange(0)">Prev</a>
+            </span> 
+        <span class="jsgrid-pager-page jsgrid-pager-current-page">{{pagination.modelCurretPage}}</span>
+        <span class="jsgrid-pager-page">..</span>
+        <span class="jsgrid-pager-page">
+            {{pagination.modelTotalPage}}
+        </span> 
+        <span class="jsgrid-pager-nav-button" *ngIf="pagination.modelCurretPage < pagination.modelTotalPage">
+            <a  (click)="paginationChange(1)">Next</a>
+        </span> 
+        <span class="jsgrid-pager-nav-button" (click)="paginationChange(3)">
+            <a >Last</a>
+        </span>
+       <!--  &nbsp;&nbsp;  {{pagination.modelCurretPage}} of {{pagination.modelFinLista}}  -->
+    </div>
+</div>

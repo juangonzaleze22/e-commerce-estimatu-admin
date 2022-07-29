@@ -1,0 +1,362 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="page-header-left">
+                    <h3>Profile
+                        <small>Multikart Admin panel</small>
+                    </h3>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <ol class="breadcrumb pull-right">
+                    <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">Settings</li>
+                    <li class="breadcrumb-item active">Profile</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="profile-details text-center">
+                        <div class="box-input-file">
+                            <label for="fileImage" class="boxImageProfile">
+                                <div class="placeholderEdit">
+                                    <div class="product-hover">
+                                        <button class="btn" type="button" (click)="fileImage.click()">
+                                            <i class="ti-pencil-alt"></i>
+                                        </button>
+                                    </div>
+                                        <img 
+                                            [src]="dataUser.foto"
+                                            alt="" 
+                                            class="img-fluid img-90 rounded-circle blur-up lazyloaded aspect-radio-cover mb-0" 
+                                            validImage
+                                        >
+                                    <app-btn-spiner class="spinner" *ngIf="loadingImage"></app-btn-spiner>
+                                </div>
+                                <input 
+                                    id="fileImage"
+                                    accept="image/gif, image/jpeg, image/png" 
+                                    alife-file-to-base64
+                                    (onFileChanged)="changeImage($event)" 
+                                    type="file" 
+                                    class="upload"
+                                    #fileImage
+                                >
+                            </label>
+                        </div>
+
+                        
+                        <h5 class="f-w-600 mb-0">{{dataUser.nombre_empresa}}</h5>
+                        <span>{{dataUser.email}}</span>
+                        <div class="social">
+                            <div class="form-group btn-showcase">
+                                <button class="btn social-btn btn-fb d-inline-block"> <i
+                                        class="fa fa-facebook"></i></button>
+                                <button class="btn social-btn btn-twitter d-inline-block"><i
+                                        class="fa fa-google"></i></button>
+                                <button class="btn social-btn btn-google d-inline-block me-0"><i
+                                        class="fa fa-twitter"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="project-status">
+                        <h5 class="f-w-600">Employee Status</h5>
+                        <div class="media">
+                            <div class="media-body">
+                                <h6>Performance<span class="pull-right">80%</span></h6>
+                                <div class="progress sm-progress-bar">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 90%"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-body">
+                                <h6>Overtime <span class="pull-right">60%</span></h6>
+                                <div class="progress sm-progress-bar">
+                                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 60%"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-body">
+                                <h6>Leaves taken<span class="pull-right">70%</span></h6>
+                                <div class="progress sm-progress-bar">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 70%"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <div class="card tab2-card">
+                <div class="card-body">
+                    <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link" [ngClass]="{'active': tabPanel == 0}" (click)="tabPanel = 0">
+                                <i data-feather="user" class="me-2"></i>
+                                Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [ngClass]="{'active': tabPanel == 1}" (click)="tabPanel = 1">
+                                <i data-feather="settings" class="me-2"></i>
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="top-tabContent">
+                        <div class="tab-pane fade" [ngClass]="{'show active': tabPanel == 0}">
+                            <form [formGroup]="myFormProfile" (ngSubmit)="onSubmitProfile()" autocomplete="off">
+                                <h5 class="f-w-600 d-flex align-items-center justify-content-between">
+                                    Profile
+                                    <button class="btn btn-edit" 
+                                        (click)="editProfile()"
+                                        [type]="isEditProfile ? 'button' : 'submit'"
+                                        [disabled]="myFormProfile.invalid"
+                                        >
+                                        <i class='bx'
+                                            [ngClass]="{'bx-edit': !isEditProfile, 'bx-check': isEditProfile}"></i>
+                                    </button>
+                                </h5>
+
+                                <div class="profile-table">
+                                    <table class="table table-borderless">
+                                        <tbody>
+                                            <tr>
+                                                <td>First Name:</td>
+                                                <td>
+                                                    <span *ngIf="!isEditProfile">{{dataUser.nombre || '...'}}</span>
+                                                    <input *ngIf="isEditProfile" type="text" class="form-control"
+                                                        formControlName="nombre">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Last Name:</td>
+                                                <td>
+                                                    <span *ngIf="!isEditProfile">{{dataUser.apellido || '...'}}</span>
+                                                    <input *ngIf="isEditProfile" type="text" class="form-control"
+                                                        formControlName="apellido">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Name of company:</td>
+                                                <td>
+                                                    <span *ngIf="!isEditProfile">{{dataUser.nombre_empresa ||
+                                                        '...'}}</span>
+                                                    <input *ngIf="isEditProfile" type="text" class="form-control"
+                                                        formControlName="nombre_empresa">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email:</td>
+                                                <td>
+                                                    <span *ngIf="!isEditProfile">{{dataUser.email}} </span>
+                                                    <input *ngIf="isEditProfile" type="email" class="form-control"
+                                                        [ngClass]="{
+                                                        'is-valid': myFormProfile.get('email').status == 'VALID' && myFormProfile.value.email != dataUser.email, 
+                                                        'is-invalid': myFormProfile.get('email').status == 'INVALID' && myFormProfile.value.email != dataUser.email
+                                                        }"
+                                                        formControlName="email" (change)="validEmail()">
+                                                    <div class="msg-alert text-red"
+                                                        *ngIf="myFormProfile.get('email').invalid && (myFormProfile.get('email').dirty || myFormProfile.get('email').touched)">
+                                                        <div class=""
+                                                            *ngIf="myFormProfile.controls.email.errors.required">
+                                                            Email is required
+                                                        </div>
+                                                        <div class="" *ngIf="myFormProfile.controls.email.errors.email">
+                                                            Email is a format invalid
+                                                        </div>
+                                                        <div class="" *ngIf="myFormProfile.controls.email.errors.emailExist">
+                                                            Email is already exitst
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Mobile Number:</td>
+                                                <td>
+                                                    <span *ngIf="!isEditProfile">{{dataUser.telefono | mask: '(000) 000 00 00' || '...'}}</span>
+                                                    <input *ngIf="isEditProfile" mask="(000) 000 00 00" type="tel"
+                                                        class="form-control" formControlName="telefono">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Day of birthday:</td>
+                                                <td>
+
+                                                    <span *ngIf="!isEditProfile">{{dataUser.fecha_nacimiento ||
+                                                        '...'}}</span>
+                                                    <input *ngIf="isEditProfile" type="text" class="form-control"
+                                                        bsDatepicker placement="top" formControlName="fecha_nacimiento">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Country:</td>
+                                                <td>
+                                                    <span *ngIf="!isEditProfile">{{dataUser.locacion?.nombrePais ||
+                                                        '...'}}</span>
+                                                    <app-select-country *ngIf="isEditProfile"
+                                                        [pais]="dataUser.locacion?.isoCodePais"
+                                                        (paisValue)="myFormProfile.controls['pais'].setValue($event)">
+                                                    </app-select-country>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>State:</td>
+                                                <td>
+                                                    <span *ngIf="!isEditProfile">{{dataUser.locacion?.nombreEstado ||
+                                                        '...'}}</span>
+                                                    <app-select-state *ngIf="isEditProfile"
+                                                        [pais]="myFormProfile.value.pais"
+                                                        [estado]="myFormProfile.value.estado"
+                                                        (stateValue)="myFormProfile.controls['estado'].setValue($event)">
+                                                    </app-select-state>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>City:</td>
+                                                <td>
+                                                    <span *ngIf="!isEditProfile">{{dataUser.locacion?.ciudad ||
+                                                        '...'}}</span>
+                                                    <input *ngIf="isEditProfile" type="text" class="form-control"
+                                                        formControlName="ciudad">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gender:</td>
+                                                <td>
+                                                    <span *ngIf="!isEditProfile">{{dataUser.sexo || '...'}}</span>
+                                                    <div *ngIf="isEditProfile"
+                                                        class="m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated justify-content-start">
+                                                        <label class="d-flex align-items-center mb-0" for="radio-male">
+                                                            <input class="radio_animated" id="radio-male" type="radio"
+                                                                formControlName="sexo" name="sexo" value="Male">
+                                                            Male
+                                                        </label>
+                                                        <label class="d-flex align-items-center mb-0 ms-4"
+                                                            for="radio-female">
+                                                            <input class="radio_animated" id="radio-female" type="radio"
+                                                                formControlName="sexo" name="sexo" value="Female">
+                                                            Female
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!-- <tr>
+                                                <td>State:</td>
+                                                <td>
+                                                    <span *ngIf="!isEditProfile">{{dataUser.estado}}</span>
+                                                    <ng-select *ngIf="isEditProfile" formControlName="pais">
+                                                        <ng-option *ngFor="let category of categories"
+                                                            [value]="category._id">
+                                                            {{category.categoria}}</ng-option>
+                                                    </ng-select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>City:</td>
+                                                <td>
+                                                    <span *ngIf="!isEditProfile">{{dataUser.ciudad}}</span>
+                                                    <input *ngIf="isEditProfile" type="text" class="form-control"
+                                                        [value]="dataUser.ciudad">
+                                                </td>
+                                            </tr> -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" [ngClass]="{'show active': tabPanel == 1}">
+                            <div class="account-setting">
+                                <h5 class="f-w-600">Notifications</h5>
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="d-block" for="chk-ani">
+                                            <input class="checkbox_animated" id="chk-ani" type="checkbox">
+                                            Allow Desktop Notifications
+                                        </label>
+                                        <label class="d-block" for="chk-ani1">
+                                            <input class="checkbox_animated" id="chk-ani1" type="checkbox">
+                                            Enable Notifications
+                                        </label>
+                                        <label class="d-block" for="chk-ani2">
+                                            <input class="checkbox_animated" id="chk-ani2" type="checkbox">
+                                            Get notification for my own activity
+                                        </label>
+                                        <label class="d-block mb-0" for="chk-ani3">
+                                            <input class="checkbox_animated" id="chk-ani3" type="checkbox" checked="">
+                                            DND
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="account-setting deactivate-account">
+                                <h5 class="f-w-600">Deactivate Account</h5>
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="d-block" for="edo-ani">
+                                            <input class="radio_animated" id="edo-ani" type="radio" name="rdo-ani"
+                                                checked="">
+                                            I have a privacy concern
+                                        </label>
+                                        <label class="d-block" for="edo-ani1">
+                                            <input class="radio_animated" id="edo-ani1" type="radio" name="rdo-ani">
+                                            This is temporary
+                                        </label>
+                                        <label class="d-block mb-0" for="edo-ani2">
+                                            <input class="radio_animated" id="edo-ani2" type="radio" name="rdo-ani"
+                                                checked="">
+                                            Other
+                                        </label>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary">Deactivate Account</button>
+                            </div>
+                            <div class="account-setting deactivate-account">
+                                <h5 class="f-w-600">Delete Account</h5>
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="d-block" for="edo-ani3">
+                                            <input class="radio_animated" id="edo-ani3" type="radio" name="rdo-ani1"
+                                                checked="">
+                                            No longer usable
+                                        </label>
+                                        <label class="d-block" for="edo-ani4">
+                                            <input class="radio_animated" id="edo-ani4" type="radio" name="rdo-ani1">
+                                            Want to switch on other account
+                                        </label>
+                                        <label class="d-block mb-0" for="edo-ani5">
+                                            <input class="radio_animated" id="edo-ani5" type="radio" name="rdo-ani1"
+                                                checked="">
+                                            Other
+                                        </label>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary">Delete Account</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

@@ -1,0 +1,28 @@
+
+:host {
+    ::ng-deep .ngxImageZoomContainer {
+        width: 100% !important;
+    }
+
+    ::ng-deep .ngxImageZoomThumbnail {
+        width: 100% !important;
+    }
+}
+
+
+.show-size li{
+    padding: 0 15px;
+    border-radius: 0;
+    line-height: 35px;
+    width: max-content;
+}
+
+.img-product-owl{
+    .img-fluid{
+        height: 70px;
+        width: 70px;
+        object-fit: cover;
+    }
+}
+
+

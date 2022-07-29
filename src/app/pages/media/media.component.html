@@ -1,0 +1,309 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="page-header-left">
+                    <h3>Media
+                        <small>Multikart Admin panel</small>
+                    </h3>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <ol class="breadcrumb pull-right">
+                    <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item active">Media </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+<!-- Container-fluid starts-->
+<div class="container-fluid bulk-cate">
+    <div class="card ">
+        <div class="card-header">
+            <h5>Dropzone Media</h5>
+        </div>
+        <div class="card-body">
+            <ngx-dropzone (change)="onSelect($event)" accept="video/mp4,video/mp3">
+                <ngx-dropzone-label>Drop it</ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of files" [multiple]='false' [removable]="true"
+                    (removed)="onRemove(f)">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+            </ngx-dropzone>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h5>Media File List</h5>
+        </div>
+        <div class="card-body">
+            <div id="batchDelete" class="category-table media-table jsgrid"
+                style="position: relative; height: auto; width: 100%;">
+                <div class="jsgrid-grid-header">
+                    <table class="jsgrid-table">
+                        <tbody>
+                            <tr class="jsgrid-header-row">
+                                <th class="jsgrid-header-cell jsgrid-align-center" style="width: 50px;"><button
+                                        type="button"
+                                        class="btn btn-danger btn-sm btn-delete mb-0 b-r-4">Delete</button></th>
+                                <th class="jsgrid-header-cell jsgrid-align-center" style="width: 50px;">Image</th>
+                                <th class="jsgrid-header-cell jsgrid-align-right" style="width: 90px;">File Name</th>
+                                <th class="jsgrid-header-cell" style="width: 100px;">Url</th>
+                            </tr>
+                            <tr class="jsgrid-filter-row" style="display: none;">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;"><input type="number">
+                                </td>
+                                <td class="jsgrid-cell" style="width: 100px;"></td>
+                            </tr>
+                            <tr class="jsgrid-insert-row" style="display: none;">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="file">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;"><input type="number">
+                                </td>
+                                <td class="jsgrid-cell" style="width: 100px;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="jsgrid-grid-body">
+                    <table class="jsgrid-table">
+                        <tbody>
+                            <tr class="jsgrid-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/1.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">Honor_Mobile.jpg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/product/product/13.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-alt-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/2.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">Samsung_LED_TV.jpeg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/electronics/product/12.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/3.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">Motorola_Bluetooth.jpg
+                                </td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/electronics/product/25.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-alt-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/4.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">headphones.jpg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/electronics/product/16.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/5.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">Apple_6s.jpeg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/electronics/product/21.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-alt-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/6.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">Printer.jpeg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/electronics/product/3.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/7.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">Canon_Camera.jpg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/electronics/product/14.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-alt-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/8.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">
+                                    High_Quality_Headphones.jpg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/electronics/product/20.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/9.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">
+                                    Home_Theater_Speakers.jpg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/electronics/product/19.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-alt-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/10.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">Diamond_Ring.jpg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/jewellery/pro/18.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/11.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">Diamond_Nacklace.jpeg
+                                </td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/jewellery/pro/12.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-alt-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/12.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">Diamond_Earrings.jpeg
+                                </td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/jewellery/pro/26.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/13.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">Night_lamp.jpg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">http://www.assets/images/furniture/8.jpg
+                                </td>
+                            </tr>
+                            <tr class="jsgrid-alt-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/14.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">men's_shoes.jpg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">http://www.assets/images/cat3.png</td>
+                            </tr>
+                            <tr class="jsgrid-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/15.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">Ledi's_red_top.jpeg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/fashion/product/12.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-alt-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/16.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">latest_ledis_shoes.jpg
+                                </td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/fashion/pro/shoes.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/17.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">Apple_6s.jpeg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/electronics/product/21.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-alt-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/18.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">Printer.jpg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/electronics/product/3.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/19.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">
+                                    High_Quality_Headphones.jpg</td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/electronics/product/20.jpg</td>
+                            </tr>
+                            <tr class="jsgrid-alt-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="checkbox">
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img
+                                        src="../assets/images/dashboard/product/20.jpg"
+                                        style="height: 50px; width: 50px;"></td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 90px;">Motorola_Bluetooth.jpg
+                                </td>
+                                <td class="jsgrid-cell" style="width: 100px;">
+                                    http://www.assets/images/electronics/product/25.jpg</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="jsgrid-pager-container" style="display: block;">
+                    <div class="jsgrid-pager">Pages: <span
+                            class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a
+                                href="javascript:void(0);">First</a></span> <span
+                            class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a
+                                href="javascript:void(0);">Prev</a></span> <span
+                            class="jsgrid-pager-page jsgrid-pager-current-page">1</span><span
+                            class="jsgrid-pager-page"><a href="javascript:void(0);">2</a></span> <span
+                            class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Next</a></span> <span
+                            class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Last</a></span> &nbsp;&nbsp; 1
+                        of 2 </div>
+                </div>
+                <div class="jsgrid-load-shader" style="display: none; position: absolute; inset: 0px; z-index: 1000;">
+                </div>
+                <div class="jsgrid-load-panel"
+                    style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

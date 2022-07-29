@@ -1,0 +1,284 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>product</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">product</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+
+
+<!-- section start -->
+
+<section class="card">
+    <div class="collection-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="box-image">
+                        <img [src]="product?.imagenes[0]" class="img-fluid aspect-radio-cover" [alt]="product?.titulo"
+                            validImage>
+                    </div>
+                    <div class="row m-0">
+                        <div class="col-12 p-0">
+                            <owl-carousel-o [options]="customOptions">
+                                <ng-template carouselSlide *ngFor="let img of product?.imagenes">
+                                    <img [src]="img" alt="" class="img-fluid aspect-radio-cover" validImage>
+                                </ng-template>
+                            </owl-carousel-o>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 rtl-text">
+                    <div class="row">
+                        <div class="col">
+                            <div class="product-right">
+                                <!-- <div class="product-count">
+                                    <ul>
+                                        <li>
+                                            <img src="../assets/images/fire.gif" class="img-fluid" alt="image">
+                                            <span class="p-counter">37</span>
+                                            <span class="lang">orders in last 24 hours</span>
+                                        </li>
+                                        <li>
+                                            <img src="../assets/images/person.gif" class="img-fluid user_img"
+                                                alt="image">
+                                            <span class="p-counter">44</span>
+                                            <span class="lang">active view this</span>
+                                        </li>
+                                    </ul>
+                                </div> -->
+                                <h2>{{product?.titulo}}</h2>
+                                <div class="rating-section">
+                                    <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                            class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                            class="fa fa-star"></i>
+                                    </div>
+                                    <h6>120 ratings</h6>
+                                </div>
+                                <!-- <div class="label-section">
+                                    <span class="badge badge-grey-color">#1 Best seller</span>
+                                    <span class="label-text">in fashion</span>
+                                </div> -->
+                                <h3 class="price-detail"
+                                    *ngIf="!calcDiscount(selectedPrice?.price, selectedPrice?.discount)">
+                                    {{selectedPrice?.price | currency: 'USD'}}
+                                </h3>
+
+                                <h3 class="price-detail"
+                                    *ngIf="calcDiscount(selectedPrice?.price, selectedPrice?.discount)">
+                                    {{calcDiscount(selectedPrice?.price, selectedPrice?.discount) | currency}}
+                                    <del class="ms-2">{{selectedPrice?.price | currency: 'USD'}}</del>
+                                    <span>{{selectedPrice?.discount}}% </span>
+
+                                    <!-- {{product?.precioDescuento |currency}}
+                                    <del class="ms-2"> {{product?.precio | currency}}</del>
+                                    <span>{{product?.descuento}}% </span> -->
+                                </h3>
+                                <!-- <ul class="color-variant">
+                                    <li class="bg-light0 active"></li>
+                                    <li class="bg-light1"></li>
+                                    <li class="bg-light2"></li>
+                                </ul> -->
+                                
+                                
+                                <div id="selectSize" class="addeffect-section product-description border-product">
+                                    <h6 class="product-title size-text">size</h6>
+                                    <div class="size-box">
+                                        <ul class="radio-section-block">
+                                            <li *ngFor="let size of product?.sizes">
+                                                <label class="d-flex"
+                                                        (click)="onSelectedPrice(size)"
+                                                        [ngClass]="{'active': size.id == selectedPrice.id}">
+                                                        <div>
+                                                            {{size.size}} - ({{size.price | currency}}) <span
+                                                                *ngIf="size.discount != null">-
+                                                                ({{size.discount}}%)</span>
+                                                        </div>
+                                                        <!-- <button class="btn btn-delete-top-right"
+                                                            (click)="removeValues('sizes', indexValueSize)"
+                                                            type="button">
+                                                            <i class='bx bx-x'></i>
+                                                        </button> -->
+                                                    </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- <h6 class="error-message">please select size</h6> -->
+                                   <!--  <div class="size-box">
+                                        <ul>
+                                            <li><a href="javascript:void(0)">s</a></li>
+                                            <li><a href="javascript:void(0)">m</a></li>
+                                            <li><a href="javascript:void(0)">l</a></li>
+                                            <li><a href="javascript:void(0)">xl</a></li>
+                                        </ul>
+                                    </div> -->
+                                    <!-- <h6 class="product-title">quantity</h6> -->
+                                    <!-- <div class="qty-box">
+                                        <div class="input-group"><span class="input-group-prepend"><button type="button"
+                                                    class="btn quantity-left-minus" data-type="minus" data-field=""><i
+                                                        class="ti-angle-left"></i></button> </span>
+                                            <input type="text" name="quantity" class="form-control input-number"
+                                                value="1">
+                                            <span class="input-group-prepend"><button type="button"
+                                                    class="btn quantity-right-plus" data-type="plus" data-field=""><i
+                                                        class="ti-angle-right"></i></button></span>
+                                        </div>
+                                    </div> -->
+                                    <h5 class="free-shopping mt-3" *ngIf="product?.envio">
+                                        <img src="assets/images/icon/free-shopping.png" alt="" class="img-fluid mr-3"> 
+                                        Free shipping 
+                                        <small class="ms-3" style="color: #6d6d6d">{{product?.textEnvio}}</small>
+                                    </h5>
+                                    <!-- <ul>
+                                        <li>
+                                            <img src="../assets/images/icon/truck.png" class="img-fluid me-2" alt="image">
+                                            <span class="lang">Free shipping for orders above $500 USD</span>
+                                        </li>
+                                    </ul> -->
+                                </div>
+                                <!-- <div class="product-buttons"><a href="javascript:void(0)" id="cartEffect"
+                                        class="btn btn-solid hover-solid btn-animation"><i
+                                            class="fa fa-shopping-cart me-1" aria-hidden="true"></i> add to cart</a>
+                                    <a href="#" class="btn btn-solid"><i class="fa fa-bookmark fz-16 me-2"
+                                            aria-hidden="true"></i>wishlist</a>
+                                </div> -->
+                               
+                                <!-- <div class="border-product">
+                                    <h6 class="product-title">shipping info</h6>
+                                    <ul class="shipping-info">
+                                        <li>100% Original Products</li>
+                                        <li>Free Delivery on order above Rs. 799</li>
+                                        <li>Pay on delivery is available</li>
+                                        <li>Easy 30 days returns and exchanges</li>
+                                    </ul>
+                                </div> -->
+                                <div class="border-product">
+                                    <h6 class="product-title">share it</h6>
+                                    <div class="product-icon">
+                                        <ul class="product-social">
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="border-product">
+                                    <h6 class="product-title">product details</h6>
+                                    <p>{{product?.descripcion}}</p>
+                                    <div class="single-product-tables">
+                                        <ul class="list-specifications">
+                                            <li *ngFor="let spec of product?.metas">
+                                                <span>{{spec.title}}</span>
+                                                <span>{{spec.description}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- product-tab starts -->
+<section class="tab-product card py-4 px-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                    <li class="nav-item">
+                        <a (click)="tabs = 1" class="nav-link" [ngClass]="{'active': tabs == 1}"><i
+                                class="icofont icofont-ui-home"></i>Details</a>
+                        <div class="material-border"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="tabs = 3" class="nav-link" [ngClass]="{'active': tabs == 3}"><i
+                                class="icofont icofont-contacts"></i>Video</a>
+                        <div class="material-border"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="tabs = 4" class="nav-link" [ngClass]="{'active': tabs == 4}"><i
+                                class="icofont icofont-contacts"></i>Write Review</a>
+                        <div class="material-border"></div>
+                    </li>
+                </ul>
+                <div class="tab-content nav-material" id="top-tabContent">
+                    <div [ngClass]="{'show active ': tabs == 1}" class="tab-pane fade">
+                        <div class="product-tab-discription">
+                            {{product?.resumen}}
+                        </div>
+                    </div>
+                    <div [ngClass]="{'show active ': tabs == 3}" class="tab-pane fade">
+                        <div class="">
+                            <video width="320" height="240" controls *ngIf="product?.video">
+                                <source [src]="global.urlImage + product?.video" type="video/mp4">
+                                <source [src]="global.urlImage + product?.video" type="video/ogg">
+                            </video>
+                            <iframe *ngIf="product?.urlVideo" width="560" height="315" controls
+                                [src]="product?.urlVideo | safeUrl" allow="encrypted-media" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div [ngClass]="{'show active ': tabs == 4}" class="tab-pane fade">
+                        <form class="theme-form">
+                            <div class="form-row row">
+                                <div class="col-md-12">
+                                    <div class="media">
+                                        <label>Rating</label>
+                                        <div class="media-body ms-3">
+                                            <div class="rating three-star"><i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                    class="fa fa-star"></i> <i class="fa fa-star"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter Your name"
+                                        required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" id="email" placeholder="Email" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="review">Review Title</label>
+                                    <input type="text" class="form-control" id="review"
+                                        placeholder="Enter your Review Subjects" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="review">Review Title</label>
+                                    <textarea class="form-control" placeholder="Wrire Your Testimonial Here"
+                                        id="exampleFormControlTextarea1" rows="6"></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn btn-solid" type="submit">Submit YOur
+                                        Review</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- product-tab ends -->

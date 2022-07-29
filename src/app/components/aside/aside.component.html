@@ -1,0 +1,60 @@
+<!-- Page Sidebar Start-->
+<div class="page-sidebar" [ngClass]="{'open': collapseMenu}">
+    <div class="main-header-left d-none d-lg-block">
+        <div class="logo-wrapper"><a href="index.html"><img class="blur-up lazyloaded"
+                    src="./assets/images/icon/logo.svg" alt=""></a></div>
+    </div>
+    <div class="sidebar custom-scrollbar">
+        <div class="sidebar-user text-center">
+            <div>
+                <img class="img-60 rounded-circle lazyloaded blur-up aspect-radio-cover" 
+                [src]="global.getUser().foto" alt="#" validImage>
+            </div>
+            <h6 class="mt-3 f-14">{{global.getUser().nombre_empresa}}</h6>
+            <p>general manager.</p>
+        </div>
+        <ul class="sidebar-menu">
+            <!-- <li>
+                <a class="sidebar-header" href="index.html"><i data-feather="home"></i><span>Dashboard</span></a>
+            </li> -->
+            <li *ngFor="let item of optionMenu" [ngClass]="{'active': item.collapse}">
+                <a class="sidebar-header" (click)="item.url == 'none'? openMenu(item) : null"
+                    [routerLink]="item.url != 'none' ? item.url : null"
+                    [routerLinkActive]="item.url != 'none' ? 'active' : 'null'">
+                    <app-icon-feather [featherIcon]="item.featherIcon"></app-icon-feather>
+                    <span>{{item.title}}</span>
+                    <i class="fa fa-angle-right pull-right" *ngIf="item.subMenu"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li *ngFor="let submenu of item.subMenu" [ngClass]="{'active': submenu.collapse}">
+                        <a (click)="submenu.collapse = !submenu.collapse"
+                            *ngIf="submenu.options != undefined">
+
+                            <i class="fa fa-circle"></i>
+                            <span>{{submenu.title }}</span>
+                            <i class="fa fa-angle-right pull-right" *ngIf="submenu.options"></i>
+                        </a>
+                        <a *ngIf="submenu.options == undefined" [routerLink]="submenu.url" [routerLinkActive]="'active'">
+                            <i class="fa fa-circle"></i>
+                            <span>{{submenu.title }} </span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li *ngFor="let option of submenu.options">
+                                <a [routerLink]="item.url == 'none'? option.url: null" routerLinkActive="active"><i
+                                        class="fa fa-circle"></i>{{option.title}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a [href]="null" class="sidebar-header" (click)="global.logOut()">
+                    <app-icon-feather featherIcon="log-out"></app-icon-feather>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- Page Sidebar Ends-->

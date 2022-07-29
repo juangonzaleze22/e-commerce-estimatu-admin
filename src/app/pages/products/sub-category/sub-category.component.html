@@ -1,0 +1,123 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="page-header-left">
+                    <h3>Sub category
+                        <small>Multikart Admin panel</small>
+                    </h3>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <ol class="breadcrumb pull-right">
+                    <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">Physical</li>
+                    <li class="breadcrumb-item active">Category</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Products subcategory</h5>
+                </div>
+                <div class="card-body">
+                    <div class="btn-popup pull-right">
+                        <button type="button" class="btn btn-primary" (click)="modalAddSubCategory(addSubCategory)">Add
+                            Subcategory</button>
+                    </div>
+                    <div id="basicScenario" class="product-physical table-responsive jsgrid"
+                        style="position: relative; height: auto; width: 100%;"
+                        *ngIf="subCategories?.length > 0"
+                       >
+                        <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+                            <table class="jsgrid-table category">
+                                <tbody>
+                                    <tr class="jsgrid-header-row">
+                                        <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
+                                            style="width: 15%;">Image</th>
+                                        <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50%;">
+                                            Name
+                                        </th>
+                                        <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 20%;">
+                                            Date</th>
+                                        <th class="jsgrid-header-cell jsgrid-control-field jsgrid-align-center"
+                                            style="width: 15%;">
+                                            Options
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <form [formGroup]="myFormUpdate" (ngSubmit)="updateCategory()" autocomplete="off" *ngIf="subCategories?.length > 0">
+                            <div class="jsgrid-grid-body">
+                                <table class="jsgrid-table">
+                                    <tbody>
+                                        <tr class="jsgrid-alt-row" *ngFor="let item of subCategories" style="height: 65px">
+                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 15%;">
+                                                <img [src]="item.pathUrl != '' ? global.urlImage + item.pathUrl : '../assets/images/pro3/34.jpg'" class="blur-up lazyloaded"
+                                                    style="height: 50px; width: 50px;" *ngIf="!item.edit">
+                                                <label [for]="item._id" class="label-file">
+                                                    <input [id]="item._id" class="form-control" alife-file-to-base64
+                                                        id="validationCustom02" type="file" #fileSelect
+                                                        (onFileChanged)="changeImage($event)" hidden>
+                                                    <img [src]='imageChanged' class="blur-up lazyloaded"
+                                                        style="height: 50px; width: 50px;" *ngIf="item.edit">
+                                                        <button class="btn btn-change" (click)="fileSelect.click()" *ngIf="item.edit" type="button">
+                                                            <i class='bx bx-refresh'></i>
+                                                        </button>
+                                                </label>
+                                            </td>
+                                            <td class="jsgrid-cell" style="width: 50%;">
+                                                <span *ngIf="!item.edit" style="height: 27px; display: block">
+                                                    {{item.subCategoria}}
+                                                </span>
+                                                <input type="text" *ngIf="item.edit" formControlName="subCategoria">
+                                            </td>
+                                            <td class="jsgrid-cell jsgrid-align-right" style="width: 20%;">
+                                                {{item.createdAt | date:'MM/dd/YYYY'}}</td>
+                                            <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center"
+                                                style="width: 15%;">
+                                                <input class="jsgrid-button jsgrid-edit-button" type="button"
+                                                    title="Edit" (click)="openEdit(item)" *ngIf="!item.edit">
+                                                <input class="jsgrid-button jsgrid-update-button" type="button"
+                                                    title="Confirm" *ngIf="item.edit" (click)="updateCategory()">
+                                                <input class="jsgrid-button jsgrid-cancel-edit-button" type="button"
+                                                    title="Cancel" (click)="cancelEdit(item)" *ngIf="item.edit">
+                                                <input class="jsgrid-button jsgrid-delete-button" type="button"
+                                                    title="Delete" *ngIf="!item.edit" (click)="sureDelete(item)">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+
+                        <app-pagination  [paginationData]="paginationData"
+                            (page)="updatePage($event)" *ngIf="subCategories?.length > 0"></app-pagination>
+
+                        <app-loading-content *ngIf="loading"></app-loading-content>
+                    </div>
+                    <app-not-found *ngIf="subCategories?.length == 0"></app-not-found>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #addSubCategory>
+    <app-add-category
+        data="subcategory"
+    ></app-add-category>
+</ng-template>
+
+<!-- Container-fluid Ends-->

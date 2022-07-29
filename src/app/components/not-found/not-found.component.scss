@@ -1,0 +1,15 @@
+.nothing{
+    width: 100%;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    i{
+        font-size: 40px;
+    }
+    h4{
+        margin: 15px 0;
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,212 @@
+<!-- page-wrapper Start-->
+<div class="page-wrapper">
+    <div class="authentication-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 p-0 card-left">
+                    <div class="card bg-primary">
+
+                        <img class="img-fluid img__logo" src="/assets/images/icon/logo.svg" alt="">
+
+                        <div class="single-item">
+                            <div>
+                                <div>
+                                    <h3>Welcome to Mami decor</h3>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                        Lorem Ipsum has been the industry's standard dummy.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 p-0 card-right">
+                    <div class="card tab2-card">
+                        <div class="card-body">
+                            <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" [ngClass]="{'active': tabPanel == 0}" (click)="changePanel(0)">
+                                        <span class="icon-user me-2"></span>
+                                        Login
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" [ngClass]="{'active': tabPanel == 1}" (click)="changePanel(1)">
+                                        <span class="icon-unlock me-2"></span>
+                                        Register
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="top-tabContent">
+                                <div class="tab-pane fade" [ngClass]="{'show active': tabPanel == 0}" id="top-profile"
+                                    role="tabpanel" aria-labelledby="top-profile-tab">
+                                    <form [formGroup]="myFormLogin" (ngSubmit)="onSubmitLogin()" autocomplete="off"
+                                        class="form-horizontal auth-form">
+                                        <div class="form-group">
+                                            <input autocomplete='none' formControlName="email" type="email"
+                                                class="form-control" placeholder="Email">
+                                            <div class="msg-alert text-red"
+                                                *ngIf="myFormLogin.get('email').invalid && (myFormLogin.get('email').dirty || myFormLogin.get('email').touched)">
+                                                <div class="" *ngIf="myFormLogin.controls.email.errors.required">
+                                                    Email is required
+                                                </div>
+                                                <div class="" *ngIf="myFormLogin.controls.email.errors.email">
+                                                    Email is a format invalid
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group password">
+                                            <input [type]="showPassword? 'password' : 'text'" class="form-control"
+                                                placeholder="Password" formControlName="password">
+                                            <button class="button-show btn" (click)="showPassword = !showPassword">
+                                                <i *ngIf="showPassword" class='bx bx-show'></i>
+                                                <i *ngIf="!showPassword" class='bx bx-low-vision'></i>
+                                            </button>
+                                            <div class="msg-alert text-red"
+                                                *ngIf="myFormLogin.get('password').invalid && (myFormLogin.get('password').dirty || myFormLogin.get('password').touched)">
+                                                Password is required
+                                            </div>
+                                        </div>
+                                        <div class="form-terms">
+                                            <div class="form-check mesm-2">
+                                                <input type="checkbox" class="form-check-input"
+                                                    formControlName="remember">
+                                                <label class="form-check-label ps-2"
+                                                    for="customControlAutosizing">Remember me</label>
+                                                <a href="#" class="btn btn-default forgot-pass">lost your
+                                                    password</a>
+                                            </div>
+                                        </div>
+                                        <div class="form-button">
+                                            <button class="btn btn-primary" type="submit"
+                                                [disabled]="myFormLogin.invalid || loading">
+                                                <app-btn-spiner *ngIf="loading"></app-btn-spiner>
+                                                Login
+                                            </button>
+                                        </div>
+                                        <div class="form-footer">
+                                            <span>Or Login up with social platforms</span>
+                                            <ul class="social">
+                                                <li><a class="ti-facebook" href=""></a></li>
+                                                <li><a class="ti-twitter" href=""></a></li>
+                                                <li><a class="ti-instagram" href=""></a></li>
+                                                <li><a class="ti-pinterest" href=""></a></li>
+                                            </ul>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" [ngClass]="{'show active': tabPanel == 1}" id="top-contact"
+                                    role="tabpanel" aria-labelledby="contact-top-tab">
+                                    <form [formGroup]="myFormRegister" (ngSubmit)="onSubmitRegister()"
+                                        autocomplete="off" class="form-horizontal auth-form">
+                                        <div class="form-group">
+                                            <input formControlName="nombre_empresa" type="text" class="form-control"
+                                                placeholder="Name of the company">
+                                            <div class="msg-alert text-red"
+                                                *ngIf="myFormRegister.get('nombre_empresa').invalid && (myFormRegister.get('nombre_empresa').dirty || myFormRegister.get('nombre_empresa').touched)">
+                                                <div class=""
+                                                    *ngIf="myFormRegister.controls.nombre_empresa.errors.required">
+                                                    Name of the company is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input formControlName="email" type="email" class="form-control"
+                                                placeholder="Email">
+                                            <div class="msg-alert text-red"
+                                                *ngIf="myFormRegister.get('email').invalid && (myFormRegister.get('email').dirty || myFormRegister.get('email').touched)">
+                                                <div class="" *ngIf="myFormRegister.controls.email.errors.required">
+                                                    Email is required
+                                                </div>
+                                                <div class="" *ngIf="myFormRegister.controls.email.errors.email">
+                                                    Email is a format invalid
+                                                </div>
+                                                <div class="" *ngIf="myFormRegister.controls.email.errors.emailExist">
+                                                    Email already exists
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group password">
+                                            <input formControlName="password" [type]="showRegisterPassword ? 'password' : 'text'" class="form-control"
+                                                placeholder="Password">
+                                                <button class="button-show btn" (click)="showRegisterPassword = !showRegisterPassword">
+                                                    <i *ngIf="showRegisterPassword" class='bx bx-show'></i>
+                                                    <i *ngIf="!showRegisterPassword" class='bx bx-low-vision'></i>
+                                                </button>
+                                            <div class="msg-alert text-red"
+                                                *ngIf="myFormRegister.get('password').invalid && (myFormRegister.get('password').dirty || myFormRegister.get('password').touched)">
+                                                <div class="" *ngIf="myFormRegister.controls.password.errors.required">
+                                                    Password is required
+                                                </div>
+                                                <div class="" *ngIf="myFormRegister.controls.password.errors.minlength">
+                                                    Password required minimum 8 characters
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group password">
+                                            <input formControlName="confirm_password" [type]="showConfirmRegisterPassword ? 'password' : 'text'"
+                                                class="form-control" placeholder="Confirm Password">
+                                                <button class="button-show btn" (click)="showConfirmRegisterPassword = !showConfirmRegisterPassword">
+                                                    <i *ngIf="showConfirmRegisterPassword" class='bx bx-show'></i>
+                                                    <i *ngIf="!showConfirmRegisterPassword" class='bx bx-low-vision'></i>
+                                                </button>
+                                            <div class="msg-alert text-red"
+                                                *ngIf="myFormRegister.get('confirm_password').invalid && (myFormRegister.get('confirm_password').dirty || myFormRegister.get('confirm_password').touched)">
+                                                <div class=""
+                                                    *ngIf="myFormRegister.controls.confirm_password.errors.required">
+                                                    Confirm password is required
+                                                </div>
+                                                <div class=""
+                                                    *ngIf="myFormRegister.controls.confirm_password.errors.minlength">
+                                                    Password required minimum 8 characters
+                                                </div>
+                                            </div>
+                                            <div class="msg-alert text-red">
+                                                <div class="" *ngIf="myFormRegister.errors?.invalid__password">
+                                                    Confirm password is not match
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-terms">
+                                            <div class="form-check mesm-2">
+                                                <input type="checkbox" class="form-check-input" formControlName="terms">
+                                                <label for="terms" class="form-check-label ps-2"><span>I agree all statements in
+                                                        <a href="" class="pull-right">Terms &amp;
+                                                            Conditions</a></span></label>
+                                                <div class="msg-alert text-red"
+                                                    *ngIf="myFormRegister.get('terms').invalid && (myFormRegister.get('terms').dirty || myFormRegister.get('terms').touched)">
+                                                    <div class="" *ngIf="myFormRegister.controls.terms.errors.required">
+                                                        Terms and conditions is required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-button">
+                                            <button class="btn btn-primary" type="submit"
+                                                [disabled]="myFormRegister.invalid || loading">
+                                                <app-btn-spiner *ngIf="loading"></app-btn-spiner>
+                                                Register
+                                            </button>
+                                        </div>
+                                        <div class="form-footer">
+                                            <span>Or Sign up with social platforms</span>
+                                            <ul class="social">
+                                                <li><a class="ti-facebook" href=""></a></li>
+                                                <li><a class="ti-twitter" href=""></a></li>
+                                                <li><a class="ti-instagram" href=""></a></li>
+                                                <li><a class="ti-pinterest" href=""></a></li>
+                                            </ul>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+.img__logo{
+    max-width: 140px;
+    margin: auto auto 25px;
+}
+
+.password{
+    position: relative;
+    .button-show{
+        position: absolute;
+        top: 2px;
+        right: 0px;
+        font-size: 20px;
+        color: #909090;
+    }
+}
+
+.msg-alert{ 
+    padding: 0 30px
+}

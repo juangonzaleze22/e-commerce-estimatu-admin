@@ -1,0 +1,78 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="page-header-left">
+                    <h3>Product List
+                        <small>Mami Decor Admin panel</small>
+                    </h3>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <ol class="breadcrumb pull-right">
+                    <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item">Physical</li>
+                    <li class="breadcrumb-item active">Product List</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row products-admin ratio_asos">
+        <div class="col-xl-3 col-sm-6" *ngFor="let product of products">
+            <div class="card">
+                <div class="card-body product-box">
+                    <div class="img-wrapper">
+                        <div class="front">
+                            <img *ngIf="loading" src="../assets/images/pro3/34.jpg" alt="" class="img-fluid bg-img img-aspect-ratio">
+                            <img *ngIf="!loading" [src]="product.imagenes[0]" class="img-fluid bg-img img-aspect-ratio" alt="" validImage>
+                            <div class="product-hover">
+                                <ul>
+                                    <li>
+                                        <button class="btn" type="button" data-original-title="" title="" [routerLink]="['/add-product']" [queryParams]="{idProduct: product._id}">
+                                            <i class="ti-pencil-alt"></i>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn" type="button" data-bs-toggle="modal"  title="" (click)="sureDelete(product._id)">
+                                            <i class="ti-trash"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-detail">
+                        <div class="rating">
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <a href="#" [routerLink]="['/details-product', product._id]">
+                            <h6>{{ product.titulo }}</h6>
+                        </a>
+                        <h4 *ngIf="product.precioDescuento != null"> {{ product.precioDescuento | currency }} <del>{{product.precio | currency}}</del></h4>
+                        <h4 *ngIf="product.precioDescuento == null"> {{ product.precio | currency }}</h4>
+                       <!--  <ul class="color-variant">
+                            <li class="bg-light0"></li>
+                            <li class="bg-light1"></li>
+                            <li class="bg-light2"></li>
+                        </ul> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-not-found *ngIf="products?.length == 0"></app-not-found>
+        <app-loading-content *ngIf="loading"></app-loading-content>
+        <app-pagination  [paginationData]="paginationData"
+        (page)="updatePage($event)" *ngIf="products?.length > 0"></app-pagination>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
