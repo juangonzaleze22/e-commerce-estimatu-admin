@@ -24,6 +24,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AddCategoryComponent } from './modals/add-category/add-category.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -113,7 +114,7 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     NgxDropzoneModule,
     NgxImageZoomModule,
     BsDatepickerModule.forRoot(),
-
+    AngularEditorModule
   ],
   providers: [BsModalRef],
   entryComponents: [],

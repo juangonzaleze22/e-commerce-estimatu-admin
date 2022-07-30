@@ -73,13 +73,6 @@ export class DetailsProductComponent implements OnInit {
     this.selectedPrice = $event
   }
 
-  calcDiscount(price, discount){
-    if (discount == ''){
-      return false;
-    }
-    const result = parseInt(price) - (parseInt(price) * (parseInt(discount) / 100));
-    return result
-  }
 
   /* destroy subscription */
   

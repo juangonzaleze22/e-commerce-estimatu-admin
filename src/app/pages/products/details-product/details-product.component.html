@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="box-image">
-                        <img [src]="product?.imagenes[0]" class="img-fluid aspect-radio-cover" [alt]="product?.titulo"
+                        <img [src]="product?.imagenes[0]" class="img-fluid aspect-radio-cover mx-auto d-block" [alt]="product?.titulo"
                             validImage>
                     </div>
                     <div class="row m-0">
@@ -74,13 +74,13 @@
                                     <span class="label-text">in fashion</span>
                                 </div> -->
                                 <h3 class="price-detail"
-                                    *ngIf="!calcDiscount(selectedPrice?.price, selectedPrice?.discount)">
+                                    *ngIf="!this.global.calcDiscount(selectedPrice?.price, selectedPrice?.discount)">
                                     {{selectedPrice?.price | currency: 'USD'}}
                                 </h3>
 
                                 <h3 class="price-detail"
-                                    *ngIf="calcDiscount(selectedPrice?.price, selectedPrice?.discount)">
-                                    {{calcDiscount(selectedPrice?.price, selectedPrice?.discount) | currency}}
+                                    *ngIf="this.global.calcDiscount(selectedPrice?.price, selectedPrice?.discount)">
+                                    {{this.global.calcDiscount(selectedPrice?.price, selectedPrice?.discount) | currency}}
                                     <del class="ms-2">{{selectedPrice?.price | currency: 'USD'}}</del>
                                     <span>{{selectedPrice?.discount}}% </span>
 
@@ -180,7 +180,7 @@
                                 </div>
                                 <div class="border-product">
                                     <h6 class="product-title">product details</h6>
-                                    <p>{{product?.descripcion}}</p>
+                                    <div class="angular-editor-textarea" [innerHTML]="product?.descripcion"></div>
                                     <div class="single-product-tables">
                                         <ul class="list-specifications">
                                             <li *ngFor="let spec of product?.metas">
@@ -223,8 +223,8 @@
                 </ul>
                 <div class="tab-content nav-material" id="top-tabContent">
                     <div [ngClass]="{'show active ': tabs == 1}" class="tab-pane fade">
-                        <div class="product-tab-discription">
-                            {{product?.resumen}}
+                        <div class="angular-editor-textarea" [innerHTML]="product?.resumen">
+                           
                         </div>
                     </div>
                     <div [ngClass]="{'show active ': tabs == 3}" class="tab-pane fade">

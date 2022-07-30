@@ -309,7 +309,7 @@ ul {
 li {
   display: inline-block; }
 
-p {
+p:not(.angular-editor p) {
   font-size: 14px;
   color: #777777;
   line-height: 1; }
@@ -14184,7 +14184,7 @@ header.stickycls {
       .product-right .product-count ul li:first-child {
         margin-right: 14px; }
 
-.product-right p {
+.product-right p:not(.angular-editor p) {
   margin-bottom: 0;
   line-height: 1.5em; }
 
@@ -14196,7 +14196,7 @@ header.stickycls {
   font-size: 16px; }
 
 .product-right .shipping-info li {
-  display: block;
+  display: block; 
   font-size: 16px;
   color: #777777;
   line-height: 1.8; }
@@ -14527,7 +14527,7 @@ header.stickycls {
   .tab-product .tab-content.nav-material,
   .product-full-tab .tab-content.nav-material {
     padding-top: 20px; }
-    .tab-product .tab-content.nav-material p,
+    /* .tab-product .tab-content.nav-material p,
     .product-full-tab .tab-content.nav-material p {
       margin-bottom: 0;
       line-height: 1.8;
@@ -14535,7 +14535,7 @@ header.stickycls {
       font-size: 16px; }
       .tab-product .product-tab-discription{
         white-space: pre-line;
-      }
+      } */
   .tab-product .product-tab-discription .part,
   .product-full-tab .product-tab-discription .part {
     margin-bottom: 20px; }
@@ -20812,7 +20812,7 @@ body.dark {
   .wishlist-section tbody tr td {
     min-width: 138px; }
   .product-right {
-    text-align: center;
+    /* text-align: center; */
     margin: 20px 0 10px 0; }
     .product-right h2 {
       margin-top: 15px; }
@@ -27486,7 +27486,7 @@ ul {
   -webkit-box-shadow: none !important;
           box-shadow: none !important; }
 
-p {
+p:not(.angular-editor p) {
   font-size: 13px;
   line-height: 1.7;
   letter-spacing: 0.7px; }
@@ -31576,10 +31576,21 @@ table tbody .border-bottom-warning td {
   color: black;
 }
 
-.list-specifications li .btn-delete{
 
+.angular-editor-textarea ol{
+  list-style-type: decimal; 
+  list-style-position: inside; 
+  padding-left: 15px;
 }
 
+.angular-editor-textarea ul { 
+  list-style: initial;
+  padding-left: 15px;
+}
+
+.angular-editor-textarea ol li, .angular-editor-textarea ul li { 
+  display: list-item;
+}
 .aspect-radio-cover{
   object-fit: cover;
   aspect-ratio: 1;

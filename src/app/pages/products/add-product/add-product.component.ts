@@ -7,6 +7,7 @@ import { GlobalService } from 'src/app/services/global.service';
 import { v4 as uuidv4 } from 'uuid';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-add-product',
@@ -77,6 +78,52 @@ export class AddProductComponent implements OnInit {
     nav: false,
     mouseDrag : true
   }
+
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+    defaultFontName: 'Lato, sans-serif',
+    toolbarHiddenButtons: [
+      [
+      'fontSize',
+      'textColor',
+      'backgroundColor',
+      'customClasses',
+      'link',
+      'unlink',
+      'insertImage',
+      'insertVideo',
+      'insertHorizontalRule',
+      'toggleEditorMode',
+      'fontName',
+      'heading',
+      'indent',
+      'outdent',
+      'subscript',
+      'superscript',
+    ]
+      ],
+    customClasses: [
+      {
+        name: "quote",
+        class: "quote",
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
+  };
 
  /*  customOptions = {
     loop: false,

@@ -122,5 +122,13 @@ export class GlobalService {
     formData.append(name, file, file.name);
     return formData;
   }
+
+  calcDiscount(price, discount){
+    if (discount == ''){
+      return false;
+    }
+    const result = parseInt(price) - (parseInt(price) * (parseInt(discount) / 100));
+    return result
+  }
   
 }
