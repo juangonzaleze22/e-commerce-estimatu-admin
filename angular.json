@@ -18,8 +18,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "disableHostCheck": true,
-            "port": 8181,
             "outputPath": "dist/e-commerce-dashboard",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -81,7 +79,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "e-commerce-dashboard:build"
+            "browserTarget": "e-commerce-dashboard:build",
+            "disableHostCheck": true,
+            "port": 8181
           },
           "configurations": {
             "production": {
