@@ -26,7 +26,7 @@
 
 <!-- section start -->
 
-<form [formGroup]="myFormProducts" (ngSubmit)="onSubmitLogin()" autocomplete="off">
+<form [formGroup]="myFormProducts" (ngSubmit)="onSubmitLogin()" autocomplete="off" enctype="multipart/form-data">
     <section class="card">
         <div class="collection-wrapper">
             <div class="container">
@@ -36,8 +36,8 @@
                             <img [src]="valuesImageProducts.length < 1 ? '../assets/images/pro3/1.jpg' : (valuesImageProducts[0].base64 || global.urlImage + valuesImageProducts[0])"
                                 class="img-fluid aspect-radio-cover" [alt]="">
                             <div class="box-input-file buttonAddProduct" *ngIf="valuesImageProducts.length != 6">
-                                <input accept="image/gif, image/jpeg, image/png" alife-file-to-base64
-                                    (onFileChanged)="changeImage($event)" type="file" class="upload">
+                                <input accept="image/gif, image/jpeg, image/png"
+                                    (change)="changeImage($event)" type="file" class="upload">
                                 <i class="fa fa-plus"></i>
                             </div>
                         </div>
@@ -223,6 +223,7 @@
                                                 enter sizes in inches</small></h6>
                                         <div class="size-box" *ngIf="valuesSize.length > 0">
                                             <ul class="radio-section-block">
+                                                
                                                 <li *ngFor="let size of valuesSize; let indexValueSize = index"
                                                     [@inOutAnimation]>
                                                     <label class="d-flex" [for]="size.id"
@@ -235,7 +236,8 @@
                                                         </div>
                                                         <button class="btn btn-delete-top-right"
                                                             (click)="removeValues('sizes', indexValueSize)"
-                                                            type="button">
+                                                            type="button"
+                                                            >
                                                             <i class='bx bx-x'></i>
                                                         </button>
                                                     </label>
@@ -491,7 +493,6 @@
         </div>
 
     </section>
-
     <!-- product-tab starts -->
     <section class="tab-product card py-4 px-3">
         <div class="container">

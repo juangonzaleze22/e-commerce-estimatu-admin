@@ -19,6 +19,9 @@ export class ListProductsComponent implements OnInit {
   page: number = 1;
   limit: number = 15;
 
+  selectedPrice;
+
+
 
   constructor(
     public global: GlobalService,
@@ -43,8 +46,8 @@ export class ListProductsComponent implements OnInit {
       this.loading = false;
       if (response['status'] === 'success') {
         this.products = response['data']
-        this.paginationData = response
-        console.log(this.products)
+        this.paginationData = response;
+        console.log(response)
       }
     }, err => {
       this.toastr.show("Error", err)

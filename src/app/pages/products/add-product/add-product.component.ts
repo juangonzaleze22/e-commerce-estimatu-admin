@@ -60,6 +60,7 @@ export class AddProductComponent implements OnInit {
   valuesSize = [];
   valuesImageProducts = [];
   valuesSocial;
+  filesImages = [];
 
   selectedPrice;
 
@@ -179,23 +180,31 @@ export class AddProductComponent implements OnInit {
 
           const product = res['data'];
 
+          console.log(product);
+
           this.myFormProducts = this.fb.group({
             titulo: [product.titulo, Validators.required],
             sku: [product.sku, Validators.required],
             categoria: [product.categoria, Validators.required],
-            subcategoria: [product.subcategoria, Validators.required],
+            subcategoria: [product.subcategoria],
             resumen: [product.resumen],
-            precio: [product.precio, Validators.required],
-            descuento: [product.descuento],
-            status: [product.status, new FormControl('active', Validators.required)],
+            status: [product.status, new FormControl(product.status, Validators.required)],
             descripcion: [product.descripcion],
-            urlVideo: [product.urlVideo]
+            urlVideo: [product.urlVideo],
+            envio: [product.envio.toString(), new FormControl(product.envio)],
+            textEnvio: [product.textEnvio],
+            size: [product.size]
           });
 
           this.valuesMeta = product.metas;
           this.valuesSize = product.sizes;
           this.valuesImageProducts = product.imagenes;
           this.valueVideo = product.video;
+          this.valuesSocial = product.social;
+
+          this.selectedPrice = this.valuesSize[0]
+
+          this.getSubCategories(product.categoria)
 
         }
       })
@@ -236,7 +245,6 @@ export class AddProductComponent implements OnInit {
 
       if(data['update'] == true){
         this.getCategories();
-
         const idCategory = data['idCategory'] || null;
         
         if (idCategory){
@@ -336,8 +344,22 @@ export class AddProductComponent implements OnInit {
 
 
   changeImage($event) {
-    this.valuesImageProducts.push($event[0]);
-    console.log(this.valuesImageProducts)
+    const files = $event.target.files[0]
+    
+
+    let reader = new FileReader();
+    reader.onloadend = () => {
+      const base64 = reader.result 
+
+      let data = { 
+        base64: base64,
+        fileImage: files
+      }
+      this.valuesImageProducts.push(data);
+      console.log(this.valuesImageProducts)
+    }
+    reader.readAsDataURL(files);
+
   }
 
   onSubmitLogin() {
@@ -345,9 +367,9 @@ export class AddProductComponent implements OnInit {
 
     if (!this.myFormProducts.invalid) {
 
-      let data = {
+      let data: any = {
         idUser: this.global.getUser()._id,
-        imagenes: this.valuesImageProducts,
+        /* imagenes: this.valuesImageProducts, */
         titulo: this.myFormProducts.value.titulo,
         sku: this.myFormProducts.value.sku,
         categoria: this.myFormProducts.value.categoria,
@@ -365,13 +387,16 @@ export class AddProductComponent implements OnInit {
         social: this.valuesSocial,
       }
 
- 
+      let form = new FormData();
+  
+      form.append("product", JSON.stringify(data));
+      this.valuesImageProducts.map(img => {
+        form.append("imagenes", img.fileImage || img);
+      })
 
       let textMessage = this.isEdit ? "Product update successfully" : "Product not created successfull";
-
-
       console.log(data);
-      this.global.postService(this.isEdit? 'products/updateProduct' : 'products/createProduct', data, 1).subscribe(response => {
+      this.global.postServiceFile(this.isEdit? 'products/updateProduct' : 'products/createProduct', form, 1).subscribe(response => {
         this.loading = false;
         if (response['status'] === "success") {
           this.toastr.show(textMessage);

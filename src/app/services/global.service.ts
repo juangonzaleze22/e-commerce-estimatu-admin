@@ -61,6 +61,17 @@ export class GlobalService {
     return this.http.get(this.url+service);
   }
 
+  postServiceFile(service: string, data: any, tipo: number = 0) {
+    let headers = new HttpHeaders();
+    if (tipo == 1) {
+      if (localStorage.getItem("token") == null) {
+        localStorage.setItem("token", "");
+      }
+      headers = headers.set('Authorization', localStorage.getItem("token"));
+    }
+    return this.http.post(this.url + service, data, { headers: headers });
+  }
+
   private checkToken(): void{
     const userToken = localStorage.getItem('token');
     const isExpired = helper.isTokenExpired(userToken);
@@ -129,6 +140,21 @@ export class GlobalService {
     }
     const result = parseInt(price) - (parseInt(price) * (parseInt(discount) / 100));
     return result
+  }
+
+  transformImageToBase64(event){
+
+    const file = event.target.files[0];
+    let base64;
+
+
+    let reader = new FileReader();
+    reader.onloadend = () => {
+      base64 = reader.result 
+    }
+    reader.readAsDataURL(file);
+    console.log(base64)
+    return base64;
   }
   
 }
