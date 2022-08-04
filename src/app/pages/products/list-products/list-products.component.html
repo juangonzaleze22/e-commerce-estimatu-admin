@@ -58,9 +58,25 @@
                         <a href="#" [routerLink]="['/details-product', product._id]">
                             <h6>{{ product.titulo }}</h6>
                         </a>
+                            <!-- <h4>{{ product.sizes[0].price | currency }} <del>{{product.precio | currency}}</del></h4> -->
+
+                            <h4 class="d-flex align-items-center"
+                                *ngIf="!global.calcDiscount(product.sizes[0].price, product.sizes[0].discount)">
+                                {{product.sizes[0].price | currency: 'USD'}}
+                            </h4>
+
+                            <h4 class="d-flex align-items-center"
+                                *ngIf="global.calcDiscount(product.sizes[0].price, product.sizes[0].discount)">
+                                {{global.calcDiscount(product.sizes[0].price, product.sizes[0].discount) | currency}}
+                                <del class="ms-2">{{product.sizes[0].price | currency: 'USD'}}</del>
+
+                                <!-- {{product?.precioDescuento |currency}}
+                                <del class="ms-2"> {{product?.precio | currency}}</del>
+                                <span>{{product?.descuento}}% </span> -->
+                            </h4>
                        <!--  <h4 *ngIf="product.precioDescuento != null"> {{ product.precioDescuento | currency }} <del>{{product.precio | currency}}</del></h4>
                         <h4 *ngIf="product.precioDescuento == null"> {{ product.precio | currency }}</h4> -->
-                       <!--  <ul class="color-variant">
+                        <!-- <ul class="color-variant">
                             <li class="bg-light0"></li>
                             <li class="bg-light1"></li>
                             <li class="bg-light2"></li>

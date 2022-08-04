@@ -159,7 +159,7 @@ export class AddProductComponent implements OnInit {
       urlVideo: [""],
       envio: ['false', new FormControl(false, Validators.required)],
       textEnvio: [''],
-      size: []
+      size: [,Validators.required]
 
     });
 
@@ -193,7 +193,7 @@ export class AddProductComponent implements OnInit {
             urlVideo: [product.urlVideo],
             envio: [product.envio.toString(), new FormControl(product.envio)],
             textEnvio: [product.textEnvio],
-            size: [product.size]
+            size: [product.sizes[0], Validators.required]
           });
 
           this.valuesMeta = product.metas;
@@ -294,7 +294,10 @@ export class AddProductComponent implements OnInit {
   }
 
   removeValues(type, i) {
-    if (type == 'sizes') { this.valuesSize.splice(i, 1) };
+    if (type == 'sizes') {
+       this.valuesSize.splice(i, 1) 
+      this.myFormProducts.controls['size'].setValue(null)
+     };
     if (type == 'metas') this.valuesMeta.splice(i, 1);
     if (type == 'input'){
       (<FormArray>this.formSize.get('size')).removeAt(i)
@@ -320,10 +323,7 @@ export class AddProductComponent implements OnInit {
         this.onSelectedPrice(values)
       }
 
-      console.log(values)
-
       this.valuesSize.push(values)
-
       this.formSize.reset();
     }
 
@@ -394,7 +394,7 @@ export class AddProductComponent implements OnInit {
         form.append("imagenes", img.fileImage || img);
       })
 
-      let textMessage = this.isEdit ? "Product update successfully" : "Product not created successfull";
+      let textMessage = this.isEdit ? "Product update successfully" : "Product created successfull";
       console.log(data);
       this.global.postServiceFile(this.isEdit? 'products/updateProduct' : 'products/createProduct', form, 1).subscribe(response => {
         this.loading = false;

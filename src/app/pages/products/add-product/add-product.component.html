@@ -219,8 +219,9 @@
 
 
                                     <div id="selectSize" class="addeffect-section product-description border-product">
-                                        <h6 class="product-title size-text">size <small class="ms-2 descriptionText">
-                                                enter sizes in inches</small></h6>
+                                        <h6 class="product-title size-text">
+                                            <div style="font-weight: normal; color: red; display: inline-block; margin-right: 2.5px">* </div>size 
+                                            <small class="ms-2 descriptionText">enter sizes in inches</small></h6>
                                         <div class="size-box" *ngIf="valuesSize.length > 0">
                                             <ul class="radio-section-block">
                                                 
@@ -250,7 +251,6 @@
                                                 {{size.size}} - ({{size.price | currency}})<span *ngIf="size.discount != ''">- ({{size.discount}}%)</span>
                                             </ng-option>
                                         </ng-select> -->
-
                                         
                                         <form [formGroup]="formSize" (ngSubmit)="onSubmitList('sizes')"
                                             autocomplete="off">
@@ -329,6 +329,13 @@
                                                 </div>
                                             </div>
                                         </form>
+                                        <!-- <div class="msg-alert text-red pl-0"
+                                            *ngIf="valuesSize.length == 0">
+                                            <div class=""
+                                                *ngIf="formSize.controls.size.errors.required">
+                                                Size is required
+                                            </div>
+                                        </div> -->
                                         <!-- <h6 class="error-message">please select size</h6> -->
                                         <!--  <div class="size-box">
                                         <ul>
