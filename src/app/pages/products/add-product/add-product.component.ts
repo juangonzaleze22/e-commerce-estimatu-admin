@@ -191,7 +191,7 @@ export class AddProductComponent implements OnInit {
             status: [product.status, new FormControl(product.status, Validators.required)],
             descripcion: [product.descripcion],
             urlVideo: [product.urlVideo],
-            envio: [product.envio.toString(), new FormControl(product.envio)],
+            envio: [product.envio, new FormControl(product.envio)],
             textEnvio: [product.textEnvio],
             size: [product.sizes[0], Validators.required]
           });
