@@ -367,6 +367,11 @@ export class AddProductComponent implements OnInit {
 
     if (!this.myFormProducts.invalid) {
 
+      this.valuesSize.map(val => { 
+        val.price = parseInt(val.price);
+        val.discount = parseInt(val.discount) || null
+      })
+
       let data: any = {
         idUser: this.global.getUser()._id,
         /* imagenes: this.valuesImageProducts, */
@@ -386,6 +391,8 @@ export class AddProductComponent implements OnInit {
         textEnvio: this.myFormProducts.value.textEnvio,
         social: this.valuesSocial,
       }
+
+      console.log(data)
 
       let form = new FormData();
   
