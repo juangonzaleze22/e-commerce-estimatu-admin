@@ -79,6 +79,11 @@ export class DetailsProductComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe()
   }
+
+  editProduct(product){
+    console.log('editProduct', product);
+
+  }
   
 
 }
