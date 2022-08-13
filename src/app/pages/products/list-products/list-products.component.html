@@ -43,6 +43,11 @@
                                             <i class="ti-trash"></i>
                                         </button>
                                     </li>
+                                    <li>
+                                        <button class="btn" type="button" data-bs-toggle="modal"  title="" [routerLink]="['/details-product', product._id]">
+                                            <i class="ti-eye"></i>
+                                        </button>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -55,7 +60,7 @@
                             <i class="fa fa-star"></i> 
                             <i class="fa fa-star"></i>
                         </div>
-                        <a href="#" [routerLink]="['/details-product', product._id]">
+                        <a href="#" >
                             <h6>{{ product.titulo }}</h6>
                         </a>
                             <!-- <h4>{{ product.sizes[0].price | currency }} <del>{{product.precio | currency}}</del></h4> -->

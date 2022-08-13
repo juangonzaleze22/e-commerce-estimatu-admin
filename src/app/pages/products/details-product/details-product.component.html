@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 rtl-text">
-                    <button class="btn btn-edit-detail-product" [routerLink]="['/add-product']" [queryParams]="{idProduct: product._id}">
+                    <button class="btn btn-edit-detail-product" [routerLink]="['/add-product']" [queryParams]="{idProduct: product?._id}">
                         <i class="ti-pencil-alt"></i>
                     </button>
                     <div class="row">
