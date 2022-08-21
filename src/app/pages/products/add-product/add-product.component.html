@@ -171,9 +171,9 @@
                                         <h6>120 ratings</h6>
                                     </div>
                                     <!-- <div class="label-section">
-                                    <span class="badge badge-grey-color">#1 Best seller</span>
-                                    <span class="label-text">in fashion</span>
-                                </div> -->
+                                        <span class="badge badge-grey-color">#1 Best seller</span>
+                                        <span class="label-text">in fashion</span>
+                                    </div> -->
 
                                     <h3 class="price-detail"
                                         *ngIf="!calcDiscount(selectedPrice?.price, selectedPrice?.discount)">
@@ -185,38 +185,7 @@
                                         {{calcDiscount(selectedPrice?.price, selectedPrice?.discount) | currency}}
                                         <del class="ms-2">{{selectedPrice?.price | currency: 'USD'}}</del>
                                         <span>{{selectedPrice?.discount}}% </span>
-
-                                        <!-- {{product?.precioDescuento |currency}}
-                                        <del class="ms-2"> {{product?.precio | currency}}</del>
-                                        <span>{{product?.descuento}}% </span> -->
                                     </h3>
-                                    <!-- <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <input class="form-control" id="validationCustom02" type="text"
-                                                formControlName="precio" mask="separator.2" thousandSeparator=","
-                                                suffix="$" placeholder="Price">
-                                            <div class="msg-alert text-red pl-0"
-                                                *ngIf="myFormProducts.get('precio').invalid && (myFormProducts.get('precio').dirty || myFormProducts.get('precio').touched)">
-                                                <div class="" *ngIf="myFormProducts.controls.precio.errors.required">
-                                                    Price is required
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <div class="input-group">
-                                                <input class="form-control" id="discount01" type="number"
-                                                    formControlName="descuento" placeholder="Discount">
-                                                <span class="input-group-text">%</span>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
-                                    <!-- <ul class="color-variant">
-                                    <li class="bg-light0 active"></li>
-                                    <li class="bg-light1"></li>
-                                    <li class="bg-light2"></li>
-                                </ul> -->
-
 
                                     <div id="selectSize" class="addeffect-section product-description border-product">
                                         <h6 class="product-title size-text">
@@ -329,42 +298,32 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        <!-- <div class="msg-alert text-red pl-0"
-                                            *ngIf="valuesSize.length == 0">
-                                            <div class=""
-                                                *ngIf="formSize.controls.size.errors.required">
-                                                Size is required
+                                        <div class="border-product d-flex justify-content-between">
+                                            <h5 class="free-shopping size">
+                                                <i class='bx bx-area'></i>
+                                                 Custom size
+                                            </h5>
+                                            <div class="m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated mt-2">
+                                                <label class="d-block mb-0 me-4" for="custom-size1">
+                                                    <input class="radio_animated" name="customSize" id="custom-size1"
+                                                        type="radio" formControlName="customSize" [value]="true">
+                                                    Yes
+                                                </label>
+                                                <label class="d-block mb-0" for="custom-size2">
+                                                    <input class="radio_animated" id="custom-size2" type="radio"
+                                                        formControlName="customSize" name="customSize" [value]="false">
+                                                    No
+                                                </label>
                                             </div>
-                                        </div> -->
-                                        <!-- <h6 class="error-message">please select size</h6> -->
-                                        <!--  <div class="size-box">
-                                        <ul>
-                                            <li><a href="javascript:void(0)">s</a></li>
-                                            <li><a href="javascript:void(0)">m</a></li>
-                                            <li><a href="javascript:void(0)">l</a></li>
-                                            <li><a href="javascript:void(0)">xl</a></li>
-                                        </ul>
-                                    </div> -->
-                                        <!-- <h6 class="product-title">quantity</h6> -->
-                                        <!-- <div class="qty-box">
-                                        <div class="input-group"><span class="input-group-prepend"><button type="button"
-                                                    class="btn quantity-left-minus" data-type="minus" data-field=""><i
-                                                        class="ti-angle-left"></i></button> </span>
-                                            <input type="text" name="quantity" class="form-control input-number"
-                                                value="1">
-                                            <span class="input-group-prepend"><button type="button"
-                                                    class="btn quantity-right-plus" data-type="plus" data-field=""><i
-                                                        class="ti-angle-right"></i></button></span>
                                         </div>
-                                    </div> -->
-                                        <div class="form-group mt-4 mb-2 d-flex justify-content-between">
+                                        <div class="border-product d-flex justify-content-between pb-0">
                                             <div>
                                                 <h5 class="free-shopping">
                                                     <img src="assets/images/icon/free-shopping.png" alt=""
                                                         class="img-fluid mr-3">
                                                     Free shipping
                                                 </h5>
-                                                <div class="form-group mt-3" *ngIf="myFormProducts.value.envio == 'true'">
+                                                <div class="form-group mt-3" *ngIf="myFormProducts.value.envio == true">
                                                     <textarea type="text" class="form-control" formControlName="textEnvio"></textarea>
                                                 </div>
                                             </div>
@@ -373,39 +332,17 @@
                                                 class="m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated mt-2">
                                                 <label class="d-block mb-0 me-4" for="shipping">
                                                     <input class="radio_animated" name="envio" id="shipping"
-                                                        type="radio" formControlName="envio" value="true" >
+                                                        type="radio" formControlName="envio" [value]="true" >
                                                     Yes
                                                 </label>
                                                 <label class="d-block mb-0" for="shipping1">
                                                     <input class="radio_animated" id="shipping1" type="radio"
-                                                        formControlName="envio" name="envio" value="false">
+                                                        formControlName="envio" name="envio" [value]="false">
                                                     No
                                                 </label>
                                             </div>
                                         </div>
-                                        <!-- <ul>
-                                        <li>
-                                            <img src="../assets/images/icon/truck.png" class="img-fluid me-2" alt="image">
-                                            <span class="lang">Free shipping for orders above $500 USD</span>
-                                        </li>
-                                    </ul> -->
                                     </div>
-                                    <!-- <div class="product-buttons"><a href="javascript:void(0)" id="cartEffect"
-                                        class="btn btn-solid hover-solid btn-animation"><i
-                                            class="fa fa-shopping-cart me-1" aria-hidden="true"></i> add to cart</a>
-                                    <a href="#" class="btn btn-solid"><i class="fa fa-bookmark fz-16 me-2"
-                                            aria-hidden="true"></i>wishlist</a>
-                                </div> -->
-
-                                    <!-- <div class="border-product">
-                                    <h6 class="product-title">shipping info</h6>
-                                    <ul class="shipping-info">
-                                        <li>100% Original Products</li>
-                                        <li>Free Delivery on order above Rs. 799</li>
-                                        <li>Pay on delivery is available</li>
-                                        <li>Easy 30 days returns and exchanges</li>
-                                    </ul>
-                                </div> -->
                                     <div class="border-product">
                                         <h6 class="product-title size-text"> share it<span class="pull-right">
                                                 <a href="" (click)="openModal(template, $event)">Add social</a>
@@ -430,9 +367,6 @@
                                                         <a [href]="valuesSocial?.instagram" target="_blank"><i
                                                                 class="fa fa-instagram"></i></a>
                                                     </li>
-                                                    <!-- <li *ngIf="valuesSocial?.facebook">
-                                                        <a [href]="valuesSocial?.facebook" target="_blank"><i class="fa fa-rss"></i></a>
-                                                    </li> -->
                                                 </ul>
                                             </div>
 
@@ -507,11 +441,11 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-12">
                     <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
-                        <li class="nav-item">
+                       <!--  <li class="nav-item">
                             <a (click)="tabPanel = 1" class="nav-link" [ngClass]="{'active': tabPanel == 1}"><i
                                     class="icofont icofont-ui-home"></i>Details</a>
                             <div class="material-border"></div>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a (click)="tabPanel = 2" class="nav-link" [ngClass]="{'active': tabPanel == 2}"><i
                                     class="icofont icofont-contacts"></i>Video</a>
@@ -521,17 +455,17 @@
 
                     
                     <div class="tab-content nav-material" id="top-tabContent">
-                        <div [ngClass]="{'show active ': tabPanel == 1}" class="tab-pane fade">
+                       <!--  <div [ngClass]="{'show active ': tabPanel == 1}" class="tab-pane fade">
                             <div class="product-tab-discription">
-                                <!-- {{product?.resumen}} -->
+                                {{product?.resumen}}
                                 <div class="form-group">
-                                    <!-- <label class="col-form-label">Resumen</label> -->
+                                    <label class="col-form-label">Resumen</label>
                                     <angular-editor formControlName="resumen" [config]="config"></angular-editor>
-                                    <!-- <textarea class="form-control" rows="5" cols="12"
-                                        formControlName="resumen"></textarea> -->
+                                    <textarea class="form-control" rows="5" cols="12"
+                                        formControlName="resumen"></textarea>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div [ngClass]="{'show active ': tabPanel == 2}" class="tab-pane fade">
                             <div class="">
                                 <!-- <video width="320" height="240" controls *ngIf="product?.video">

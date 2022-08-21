@@ -44,7 +44,7 @@ export class AddProductComponent implements OnInit {
   subscription: Subscription;
 
   loading: boolean = false;
-  tabPanel = 1;
+  tabPanel = 2;
 
   myFormProducts: FormGroup;
   formMeta: FormGroup;
@@ -126,14 +126,6 @@ export class AddProductComponent implements OnInit {
     ]
   };
 
- /*  customOptions = {
-    loop: false,
-    dots: true,
-    navText: ["", ""],
-    items: 1,
-    nav: false
-  }
- */
   files: File[] = [];
   valueVideo = {};
 
@@ -155,9 +147,10 @@ export class AddProductComponent implements OnInit {
       subcategoria: [""],
       resumen: [""],
       status: ["active", new FormControl(true, Validators.required)],
+      customSize: [false, new FormControl(false, Validators.required)],
       descripcion: [""],
       urlVideo: [""],
-      envio: ['false', new FormControl(false, Validators.required)],
+      envio: [false, new FormControl(false, Validators.required)],
       textEnvio: [''],
       size: [,Validators.required]
 
@@ -189,6 +182,7 @@ export class AddProductComponent implements OnInit {
             subcategoria: [product.subcategoria],
             resumen: [product.resumen],
             status: [product.status, new FormControl(product.status, Validators.required)],
+            customSize: [product.customSize, new FormControl(product.customSize, Validators.required)],
             descripcion: [product.descripcion],
             urlVideo: [product.urlVideo],
             envio: [product.envio, new FormControl(product.envio)],
@@ -381,6 +375,7 @@ export class AddProductComponent implements OnInit {
         subcategoria: this.myFormProducts.value.subcategoria,
         resumen: this.myFormProducts.value.resumen,
         status: this.myFormProducts.value.status,
+        customSize: this.myFormProducts.value.customSize,
         descripcion: this.myFormProducts.value.descripcion,
         sizes: this.valuesSize,
         metas: this.valuesMeta,
@@ -505,6 +500,9 @@ export class AddProductComponent implements OnInit {
     this.formSize.reset();
     this.formMeta.reset();
     this.myFormProducts.reset();
+    this.myFormProducts.controls['customSize'].setValue(false);
+    this.myFormProducts.controls['envio'].setValue(false);
+    this.myFormProducts.controls['status'].setValue("active");
     this.valuesSocial = {}
     this.selectedPrice = {}
   }

@@ -31612,6 +31612,12 @@ table tbody .border-bottom-warning td {
   margin-right: 7.5px;
 }
 
+.free-shopping i{
+  font-size: 22px;
+  color: #5d5d5d;
+  margin: 5px 10px 5px 0;
+}
+
 .collection-wrapper .box-image{
   position: relative;
  }

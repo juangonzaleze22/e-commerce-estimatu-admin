@@ -49,21 +49,6 @@
                     <div class="row">
                         <div class="col">
                             <div class="product-right">
-                                <!-- <div class="product-count">
-                                    <ul>
-                                        <li>
-                                            <img src="../assets/images/fire.gif" class="img-fluid" alt="image">
-                                            <span class="p-counter">37</span>
-                                            <span class="lang">orders in last 24 hours</span>
-                                        </li>
-                                        <li>
-                                            <img src="../assets/images/person.gif" class="img-fluid user_img"
-                                                alt="image">
-                                            <span class="p-counter">44</span>
-                                            <span class="lang">active view this</span>
-                                        </li>
-                                    </ul>
-                                </div> -->
                                 <h2>{{product?.titulo}}</h2>
                                 <div class="rating-section">
                                     <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
@@ -72,10 +57,6 @@
                                     </div>
                                     <h6>120 ratings</h6>
                                 </div>
-                                <!-- <div class="label-section">
-                                    <span class="badge badge-grey-color">#1 Best seller</span>
-                                    <span class="label-text">in fashion</span>
-                                </div> -->
                                 <h3 class="price-detail"
                                     *ngIf="!this.global.calcDiscount(selectedPrice?.price, selectedPrice?.discount)">
                                     {{selectedPrice?.price | currency: 'USD'}}
@@ -97,6 +78,11 @@
                                     <li class="bg-light2"></li>
                                 </ul> -->
                                 
+                                <h5 class="free-shopping mt-3" *ngIf="product?.envio">
+                                    <img src="assets/images/icon/free-shopping.png" alt="" class="img-fluid mr-3"> 
+                                    Free shipping 
+                                    <small class="ms-3" style="color: #6d6d6d">{{product?.textEnvio}}</small>
+                                </h5>
                                 
                                 <div id="selectSize" class="addeffect-section product-description border-product">
                                     <h6 class="product-title size-text">size</h6>
@@ -141,11 +127,7 @@
                                                         class="ti-angle-right"></i></button></span>
                                         </div>
                                     </div> -->
-                                    <h5 class="free-shopping mt-3" *ngIf="product?.envio">
-                                        <img src="assets/images/icon/free-shopping.png" alt="" class="img-fluid mr-3"> 
-                                        Free shipping 
-                                        <small class="ms-3" style="color: #6d6d6d">{{product?.textEnvio}}</small>
-                                    </h5>
+                                 
                                     <!-- <ul>
                                         <li>
                                             <img src="../assets/images/icon/truck.png" class="img-fluid me-2" alt="image">
